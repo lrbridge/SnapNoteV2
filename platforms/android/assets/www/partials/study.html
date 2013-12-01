@@ -1,0 +1,16 @@
+<div class="study">
+
+	<div class="page-header">
+		<h1 class="text-center">
+			<a href="#"><button class="btn btn-mini pull-left">Home</button></a>
+			{{ deck.name }}
+			<a href="#/shuffle"><button class="btn btn-mini pull-right">Shuffle</button></a>
+		</h1>
+	</div>
+
+	<div>{{ topCard.front }}</div>
+	<div>{{ topCard.back }}</div>
+	
+	<button ng-click="nextCard()">Next Card</button>
+
+</div>
