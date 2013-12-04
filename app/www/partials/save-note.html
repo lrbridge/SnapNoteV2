@@ -1,4 +1,4 @@
-<div class="deck-list">
+<div class="save-note">
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
@@ -13,15 +13,7 @@
         </div>
       </div>
     </div>
-	<div class="page-header">
-
-	</div>
     <div class="container">
-		<!--<div class="row">
-			&nbsp;<br/>
-			<br/>
-			<br/>
-		</div>-->
 		<div class="row">
 			<input type="text" class="form-control" id="search" placeholder="Search online for decks">
 		</div>
@@ -30,19 +22,14 @@
 				My Decks
 			</h1>
 		</div>
-		<div class="row">
-
-		</div>
-	</div>
-	<div class="list-group">
-		<div ng-repeat="deck in decks | orderBy:'name'">
-			<a href="#/{{ deck.id }}/view" class="list-group-item"><h4 class="list-group-item-heading">{{ deck.name }}</h4></a>
-		</div>
 	</div>
 	
+	<div class="list-group">
+		<div ng-repeat="deck in decks | orderBy:'name'">
+    		<a href="#/{{ deck.id }}/view" class="list-group-item"><h4 class="list-group-item-heading">{{ deck.name }}</h4></a>
+    	</div>
+	</div>
 
-
-	<div class="navbar navbar-fixed-bottom" role="navigation">
-		<a href="#/create" type="button" class="btn btn-default btn-lg btn-block">New Note</a>
-    </div>
+	<a href="#/create" type="button" class="btn btn-default btn-lg btn-block">New Note</a>
+	
 </div>
