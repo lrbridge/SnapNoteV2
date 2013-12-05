@@ -1,7 +1,7 @@
 angular.module('snapnote').controller('StudyCtrl',
     function ($scope, $routeParams, SampleDecks) {
-        var flipCount = 0;
-		var start = 0;
+        $scope.flipCount = 0;
+		$scope.start = 0;
 			
 		$scope.deck = SampleDecks.getDeck({id: $routeParams.id});
 		
@@ -14,16 +14,18 @@ angular.module('snapnote').controller('StudyCtrl',
 		    $scope.cardId = SampleDecks.getNextCardId($scope.deck.id);
 			//alert("cardid: "+$scope.cardId);
 			$scope.card = SampleDecks.getFront($scope.cardId);
+			$scope.flipCount = 0;
+			$scope.start = 0;
 		};
 		
 		$scope.flipCard = function(e) {
 			if(e.x > 350) {
 				var img = e.srcElement;
-				if(flipCount%2==0) //src here will become the card's back
+				if($scope.flipCount%2==0) //src here will become the card's back
 					$scope.card = SampleDecks.getBack($scope.cardId);
 				else //src here will become the card's front
 					$scope.card = SampleDecks.getFront($scope.cardId);
-				flipCount++;
+				$scope.flipCount++;
 			}
 		};
 		

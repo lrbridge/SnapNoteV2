@@ -32,9 +32,13 @@ var sn = {
 	]
 };
 // initialize data
-sn.decks[sn.decks.length] = new sn.classes.Deck(1,"Test Deck",0,[1,3]);
+sn.decks[sn.decks.length] = new sn.classes.Deck(1,"Dessert Facts",0,[1]);
 sn.notes[sn.notes.length] = new sn.classes.Note(1,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
-sn.notes[sn.notes.length] = new sn.classes.Note(3,"img/cookiemonster-blurred.png","img/cookiemonster.png");
+
+sn.decks[sn.decks.length] = new sn.classes.Deck(2,"Sesame Street Chars",0,[2,3,4]);
+sn.notes[sn.notes.length] = new sn.classes.Note(2,"img/cookiemonster-blurred.png","img/cookiemonster.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(3,"img/elmo-blurred.png","img/elmo.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(4,"img/thecount-blurred.png","img/thecount.png");
 // global angular snapnote module object
 var snapnote = angular.module("snapnote", ["ngRoute"]);
      
