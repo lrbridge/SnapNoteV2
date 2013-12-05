@@ -5,19 +5,24 @@ angular.module('snapnote').controller('StudyCtrl',
 			
 		$scope.deck = SampleDecks.getDeck({id: $routeParams.id});
 		
-		$scope.topCard = SampleDecks.getNextCard($scope.deck.id);
+		$scope.cardId = SampleDecks.getCardId($scope.deck.id);
       	  
+		$scope.card = SampleDecks.getFront($scope.cardId);
+		
 		$scope.nextCard = function() {
-		    $scope.topCard = SampleDecks.getNextCard($scope.deck.id);
+		//alert($scope.deck.id);
+		    $scope.cardId = SampleDecks.getNextCardId($scope.deck.id);
+			//alert("cardid: "+$scope.cardId);
+			$scope.card = SampleDecks.getFront($scope.cardId);
 		};
 		
 		$scope.flipCard = function(e) {
 			if(e.x > 350) {
 				var img = e.srcElement;
 				if(flipCount%2==0) //src here will become the card's back
-					img.src = "img/wrong-slide2.JPG";
+					$scope.card = SampleDecks.getBack($scope.cardId);
 				else //src here will become the card's front
-					img.src = "img/wrong-slide2-blurred.jpg";
+					$scope.card = SampleDecks.getFront($scope.cardId);
 				flipCount++;
 			}
 		};
@@ -30,9 +35,9 @@ angular.module('snapnote').controller('StudyCtrl',
 			if(start - e.x > 0) {
 				var img = e.srcElement;
 				if(flipCount%2==0)
-					img.src = "img/wrong-slide2.JPG";
+					$scope.card = SampleDecks.getFront($scope.cardId);
 				else
-					img.src = "img/wrong-slide2-blurred.jpg";
+					$scope.card = SampleDecks.getFront($scope.cardId);
 				flipCount++;
 			}
 		};
