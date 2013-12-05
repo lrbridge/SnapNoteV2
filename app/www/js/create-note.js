@@ -1,9 +1,9 @@
 angular.module('snapnote')
-    .controller('CreateNoteCtrl', function($scope) {
-        $scope.model = {
-            message: "This is my app!!!";
-        };
+    .controller('CreateNoteCtrl', function($scope, SampleDecks) {
 
+        $scope.save = function() {
+            SampleDecks.add();
+        }
     });
 
 function clickUndo() {
