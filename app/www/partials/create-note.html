@@ -31,7 +31,7 @@
 				<img src="img/redo_icon.png" style="width: 90px;" onclick="clickRedo()" />
 			</div>
 			<div class="col-xs-3">
-				<img src="img/blur_icon.png" style="width: 90px;" onclick="clickBlur()" />
+				<img src="img/blur_icon.png" style="width: 90px;" onclick="sn.createnote.clickBlur()" />
 			</div>
 			<div class="col-xs-3">
 				<img src="img/camera_icon.png" style="width: 90px;" data-toggle="modal" data-target="#cameraModal" />
@@ -61,7 +61,7 @@
           </div>
           <div class="modal-body">
             <button type="button" class="btn btn-primary">Add Existing</button>
-            <button type="button" class="btn btn-primary">Take New</button>
+            <button type="button" class="btn btn-primary" onclick="sn.createnote.clickCamera()">Take New</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
