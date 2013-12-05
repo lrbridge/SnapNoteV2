@@ -3,7 +3,7 @@ angular.module('snapnote')
 
         $scope.capturePhoto = function() {
             
-            alert("here");
+            alert("about to capture a photo");
             
               // Take picture using device camera and retrieve image as base64-encoded string
               navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
@@ -13,13 +13,14 @@ angular.module('snapnote')
         $scope.save = function() {
             SampleDecks.add();
         }
+
     });
 
     // Called when a photo is successfully retrieved
     function onPhotoDataSuccess(imageData) {
       // Uncomment to view the base64-encoded image data
       // console.log(imageData);
-alert("success!");
+        alert("success!");
       // Get image handle
       //
       var smallImage = document.getElementById('smallImage');

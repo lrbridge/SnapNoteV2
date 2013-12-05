@@ -7,31 +7,27 @@ var sn = {
         pictureSource: {},
         destinationType: {},
         onDeviceReady: function() { // device APIs are available
-            alert("devicehea");
             pictureSource=navigator.camera.PictureSourceType;
             destinationType=navigator.camera.DestinationType;
-            alert(pictureSource+" "+destinationType);
         }
     },
     
 	// view namespace for functions
 	createnote: {
-		clickCamera: function() {
-			alert("clicked the camera");
-		},
 		clickBlur: function() {
 			alert("this feature needs to be demoed on the desktop interface");
 		}
 	},
 	
 	classes: {
-		Deck: function(_id,_name) {
+		Deck: function(_id,_name, _topCard,_cards) {
 			this.id=_id;
 			this.name=_name;
+			this.topCard=_topCard;
+			this.cards=_cards;
 		},
-		Note: function(_id,_deckId,_front,_back) {
+		Note: function(_id,_front,_back) {
 			this.id=_id;
-			this.deckId=_deckId;
 			this.front=_front;
 			this.back=_back;
 		}
@@ -44,11 +40,13 @@ var sn = {
 	]
 };
 // initialize data
-sn.decks[sn.decks.length] = new sn.classes.Deck(1,"Test Deck");
-sn.notes[sn.notes.length] = new sn.classes.Note(1,1,"img/blur_icon.png","img/logo.png");
-sn.notes[sn.notes.length] = new sn.classes.Note(2,1,"img/blur_icon.png","img/logo.png");
-	
+sn.decks[sn.decks.length] = new sn.classes.Deck(1,"Dessert Facts",0,[1]);
+sn.notes[sn.notes.length] = new sn.classes.Note(1,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
 
+sn.decks[sn.decks.length] = new sn.classes.Deck(2,"Sesame Street Chars",0,[2,3,4]);
+sn.notes[sn.notes.length] = new sn.classes.Note(2,"img/cookiemonster-blurred.png","img/cookiemonster.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(3,"img/elmo-blurred.png","img/elmo.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(4,"img/thecount-blurred.png","img/thecount.png");
 // global angular snapnote module object
 var snapnote = angular.module("snapnote", ["ngRoute"]);
      
@@ -94,19 +92,54 @@ snapnote.factory('SampleDecks', function() {
 					return sn.decks[i];
 				}
 			}
+			alert("couldn't find: "+deckIdObj.id);
 			return null;
 		},
-		getNextCard: function(deckId) {
-            return sn.notes[0];
-            
-        },
-        add: function() {
+		getCardId: function(deckId) {
+			for(var i=0;i<sn.decks.length;i++) {
+				if(sn.decks[i].id == deckId) {
+					return sn.decks[i].cards[0];
+				}
+			}
+		},
+		getFront: function(cardId) {
+			for(var i=0;i<sn.notes.length;i++) {
+				if(sn.notes[i].id == cardId) {
+					return sn.notes[i].front;
+				}
+			}
+			return null;
+		},
+		getBack: function(cardId) {
+			for(var i=0;i<sn.notes.length;i++) {
+				if(sn.notes[i].id == cardId) {
+					return sn.notes[i].back;
+				}
+			}
+			return null;
+		},
+		getNextCardId: function(deckId) {
+			var _deckId = 0;
+			for(var i=0;i<sn.decks.length;i++) {
+				if(sn.decks[i].id == deckId) {
+					_deckId = i;
+				}
+			}
+			var topCard = sn.decks[_deckId].topCard;
+			if(topCard == (sn.decks[_deckId].cards.length - 1))
+			{
+				sn.decks[_deckId].topCard = 0;
+			} else {
+				sn.decks[_deckId].topCard++;
+			}
+			return sn.decks[_deckId].cards[sn.decks[_deckId].topCard];
+		},
+		add: function() {
             alert("add");
 		}
 	}
 	
 });
 
-//app.initialize();
 // Wait for device API libraries to load
 document.addEventListener("deviceready",sn.phonegap.onDeviceReady,false);
