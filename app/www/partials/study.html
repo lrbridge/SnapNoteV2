@@ -8,9 +8,15 @@
 		</h1>
 	</div>
 
-	<div>{{ topCard.front }}</div>
-	<div>{{ topCard.back }}</div>
+	<!-- src here will become the card's front -->
+	<img id="note" src="img/wrong-slide2-blurred.jpg" ng-click="flipCard($event)" ng-mousedown="start($event)" ng-mouseup="end($event)" width="100%" alt=""></img>
+	
+	<div>Tap on the right side of the screen to flip the note.</div>
 	
 	<button ng-click="nextCard()">Next Card</button>
 
 </div>
+
+
+
+<!--<div style="background: url()"><div style="float:left:margin-left: 250px">"-->
