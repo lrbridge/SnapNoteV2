@@ -87,7 +87,16 @@ snapnote.factory('SampleDecks', function() {
 				}
 			}
 			return null;
-		}
+		},
+        add: function() {
+            decks.push({"id": 3, "name": "Anisdf", "topId": 0,
+        	 "cards": [
+	        	{ id: 0, front: "sdf", back: "Green" },
+	        	{ id: 1, front: "sdf", back: "Yellow" },
+	        	{ id: 2, front: "sdfd", back: "Orange" }                            
+        	  ]
+         })
+        }
 	}
 	
 });
