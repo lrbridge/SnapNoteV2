@@ -1,3 +1,41 @@
+
+// global sn object to access outside of angular
+var sn = {
+	// view namespace for functions
+	createnote: {
+		clickCamera: function() {
+			alert("clicked the camera");
+		},
+		clickBlur: function() {
+			alert("this feature needs to be demoed on the desktop interface");
+		}
+	},
+	
+	classes: {
+		Deck: function(_id,_name) {
+			this.id=_id;
+			this.name=_name;
+		},
+		Note: function(_id,_deckId,_front,_back) {
+			this.id=_id;
+			this.deckId=_deckId;
+			this.front=_front;
+			this.back=_back;
+		}
+	},
+	
+	// data objects containing "database" of decks and notes
+	decks: [
+	],
+	notes: [
+	]
+};
+// initialize data
+sn.decks[sn.decks.length] = new sn.classes.Deck(1,"Test Deck");
+sn.notes[sn.notes.length] = new sn.classes.Note(1,1,"img/blur_icon.png","img/logo.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(2,1,"img/blur_icon.png","img/logo.png");
+	
+
 // global angular snapnote module object
 var snapnote = angular.module("snapnote", ["ngRoute"]);
      
@@ -32,49 +70,21 @@ snapnote.config(function($routeProvider) {
 
 
 snapnote.factory('SampleDecks', function() {
-	var decks = [
-         {"id": 0, "name": "Animal Colors", "topId": 0,
-        	 "cards": [
-	        	{ id: 0, front: "Frog", back: "Green" },
-	        	{ id: 1, front: "Snake", back: "Yellow" },
-	        	{ id: 2, front: "Tiger", back: "Orange" }                            
-        	  ]
-         },
-         {"id": 1, "name": "Animal Sounds", "topId": 0,
-        	 "cards": [
-        	     { id: 0, front: "Dog", back: "Woof" },
-        	     { id: 1, front: "Cat", back: "Meow" },
-        	     { id: 2, front: "Bird", back: "Tweet" },
-        	     { id: 3, front: "Mouse", back: "Squeak" },
-        	     { id: 4, front: "Cow", back: "Moo" },
-        	     { id: 5, front: "Fox", back: "Joff-tchoff-tchoffo-tchoffo-tchoff!" }                            
-        	  ]
-         },         
-         {"id": 2, "name": "Math", "topId": 0, 
-        	 "cards": [
-        	     { id: 0, front: "2+2", back: "4" }                            
-              ]
-         }
-         
-    ];
-
 	
 	return {
 		getMyDecks: function() {
-			return decks;
-		},
-		loadMyDecks: function() {
+			return sn.decks;
 		},
 		getDeck: function(deckIdObj) {
-			for(i=0; i<decks.length; i++) {
-				if(decks[i].id == deckIdObj.id) {
-					return decks[i];
+			for(i=0; i<sn.decks.length; i++) {
+				if(sn.decks[i].id == deckIdObj.id) {
+					return sn.decks[i];
 				}
 			}
 			return null;
 		},
 		getNextCard: function(deckId) {
-			var cards = decks[deckId].cards;
+			/*var cards = decks[deckId].cards;
 			var cardId = decks[deckId].topId;
 			cardId++;
 			if(cardId >= cards.length) {
@@ -85,8 +95,8 @@ snapnote.factory('SampleDecks', function() {
 				if(cards[i].id == cardId) {
 					return cards[i];
 				}
-			}
-			return null;
+			}*/
+			return sn.notes[0];
 		}
 	}
 	
