@@ -29,7 +29,6 @@
         <script src="js/vendor/angular-route.js"></script>
         <script src="js/vendor/jquery-2.0.3.min.js"></script>
         <script src="js/vendor/bootstrap.js"></script>
-        <script src="js/index.js"></script>
         
         <script type="text/javascript" src="phonegap.js"></script>
         
@@ -48,59 +47,5 @@
 			<ng-view></ng-view>
 		</div>
         
-        <button onclick="capturePhoto()">Take Picture</button>
-
-        <script type="text/javascript">
-
-            var pictureSource;   // picture source
-            var destinationType; // sets the format of returned value
-
-            // Wait for device API libraries to load
-            //
-            document.addEventListener("deviceready",onDeviceReady,false);
-
-            // device APIs are available
-            //
-            function onDeviceReady() {
-                alert("DEVicE READy");
-                pictureSource=navigator.camera.PictureSourceType;
-                destinationType=navigator.camera.DestinationType;
-            }
-
-
-            function capturePhoto() {
-              // Take picture using device camera and retrieve image as base64-encoded string
-              navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
-                destinationType: destinationType.DATA_URL });
-            }
-
-            // Called when a photo is successfully retrieved
-            //
-            function onPhotoDataSuccess(imageData) {
-              // Uncomment to view the base64-encoded image data
-              // console.log(imageData);
-
-              // Get image handle
-              //
-              var smallImage = document.getElementById('smallImage');
-
-              // Unhide image elements
-              //
-              smallImage.style.display = 'block';
-
-              // Show the captured photo
-              // The inline CSS rules are used to resize the image
-              //
-              smallImage.src = "data:image/jpeg;base64," + imageData;
-            }
-
-
-            // Called if something bad happens.
-            //
-            function onFail(message) {
-              alert('Failed because: ' + message);
-            }
-
-        </script>
     </body>
 </html>
