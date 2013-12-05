@@ -54,6 +54,11 @@ snapnote.factory('SampleDecks', function() {
         	 "cards": [
         	     { id: 0, front: "2+2", back: "4" }                            
               ]
+         },         
+         {"id": 3, "name": "Chocolate", "topId": 0, 
+        	 "cards": [
+        	     { id: 0, front: "chocolate", back: "chips" }                            
+              ]
          }
          
     ];
