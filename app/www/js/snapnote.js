@@ -67,6 +67,11 @@ snapnote.config(function($routeProvider) {
 	{
 		templateUrl: 'partials/study.html', 
 		controller: 'StudyCtrl'
+	})
+	.when("/blur",
+	{
+		templateUrl: 'partials/blur.html',
+		controller: 'BlurCtrl'
 	});
     
 });
