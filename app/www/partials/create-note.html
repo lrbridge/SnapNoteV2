@@ -61,45 +61,10 @@
           </div>
           <div class="modal-body">
             <button type="button" class="btn btn-primary">Add Existing</button>
-            <button type="button" class="btn btn-primary" onclick="sn.createnote.clickCamera()">Take New</button>
+            <button type="button" class="btn btn-primary" ng-click="capturePhoto()">Take New</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-    
-    <!--script>
-        function capturePhoto() {
-              // Take picture using device camera and retrieve image as base64-encoded string
-              navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
-                destinationType: destinationType.DATA_URL });
-            }
-
-            // Called when a photo is successfully retrieved
-            //
-            function onPhotoDataSuccess(imageData) {
-              // Uncomment to view the base64-encoded image data
-              // console.log(imageData);
-
-              // Get image handle
-              //
-              var smallImage = document.getElementById('smallImage');
-
-              // Unhide image elements
-              //
-              smallImage.style.display = 'block';
-
-              // Show the captured photo
-              // The inline CSS rules are used to resize the image
-              //
-              smallImage.src = "data:image/jpeg;base64," + imageData;
-            }
-
-
-            // Called if something bad happens.
-            //
-            function onFail(message) {
-              alert('Failed because: ' + message);
-            }
-    </script-->
     
 </div>
