@@ -1,6 +1,19 @@
 
 // global sn object to access outside of angular
 var sn = {
+    
+    // phonegap 
+    phonegap: {
+        pictureSource: {},
+        destinationType: {},
+        onDeviceReady: function() { // device APIs are available
+            alert("devicehea");
+            pictureSource=navigator.camera.PictureSourceType;
+            destinationType=navigator.camera.DestinationType;
+            alert(pictureSource+" "+destinationType);
+        }
+    },
+    
 	// view namespace for functions
 	createnote: {
 		clickCamera: function() {
@@ -93,3 +106,7 @@ snapnote.factory('SampleDecks', function() {
 	}
 	
 });
+
+//app.initialize();
+// Wait for device API libraries to load
+document.addEventListener("deviceready",sn.phonegap.onDeviceReady,false);
