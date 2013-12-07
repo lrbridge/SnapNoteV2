@@ -3,6 +3,11 @@ angular.module('snapnote').controller('DeckListCtrl',
 		
 		$scope.decks = SampleDecks.getMyDecks();
       	
-		$scope.edit = function() {
-		};
+        $scope.photos = [
+            "img/demoslides/book1.png",
+            "img/demoslides/book2.png",
+            "img/demoslides/whiteboard1.png",
+            "img/demoslides/whiteboard2.png"
+        ];
+        
 	});
