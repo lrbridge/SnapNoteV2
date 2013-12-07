@@ -61,11 +61,6 @@ snapnote.config(function($routeProvider) {
 		templateUrl: "partials/create-note.html",
 		controller: "CreateNoteCtrl"
 	})
-	.when("/save",
-	{
-		templateUrl: "partials/save-note.html",
-		controller: "SaveNoteCtrl"
-	})
 	.when('/:id/view', 
 	{
 		templateUrl: 'partials/deck.html', 
