@@ -56,7 +56,7 @@ snapnote.config(function($routeProvider) {
 	  templateUrl: "partials/deck-list.html",
 	  controller: "DeckListCtrl"
 	})
-	.when("/create",
+	.when("/create/:photo*",
 	{
 		templateUrl: "partials/create-note.html",
 		controller: "CreateNoteCtrl"

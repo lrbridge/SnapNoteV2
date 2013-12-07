@@ -1,5 +1,7 @@
 angular.module('snapnote')
-    .controller('CreateNoteCtrl', function($scope, SampleDecks) {
+    .controller('CreateNoteCtrl', function($scope, $routeParams, SampleDecks) {
+
+        $scope.photo = $routeParams.photo;
 
         $scope.capturePhoto = function() {
             
