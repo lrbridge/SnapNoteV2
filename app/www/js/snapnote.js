@@ -183,19 +183,21 @@ snapnote.factory('SampleDecks', function() {
 			}
 			return sn.decks[_deckId].cards[sn.decks[_deckId].topCard];
 		},
-		add: function(deckId, photo) {
+		addCard: function(deckId, front, back) {
 			// Pick next value for card id
 			var newCardId = sn.notes.length + 1;
 
 			// Create a new note from card
-			sn.notes[sn.notes.length] = new sn.classes.Note(newCardId,photo);
+			sn.notes[sn.notes.length] = new sn.classes.Note(newCardId,front,back);
 
 			// Add new card to supplied deck id
 			this.getDeck({id: deckId}).cards.push(newCardId);
 		},
-		create: function(deckName) {
+		addDeck: function(deckName) {
 			// Create a new deck with specified name
-			sn.decks[sn.decks.length] = new sn.classes.Deck(sn.decks.length + 1, deckName, 0, [], true, false);
+            var newDeckId = sn.decks.length + 1;
+			sn.decks.push(new sn.classes.Deck(newDeckId, deckName, 0, [], true, false, true));
+            return newDeckId;
 		}
 	}
 	
