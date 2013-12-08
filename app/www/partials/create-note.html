@@ -17,24 +17,11 @@
                     <img src="img/icons/redo.svg" style="width: 30px;" ng-click="clickRedo()" />
                 </a>
             </li>
-            <!--<li>
-                <a href="">
-                    <img src="img/icons/camera.svg" style="width: 30px;" data-toggle="modal" data-target="#cameraModal" />
-                </a>
-            </li>-->
         </ul>
     </div>
-    <div class="page-header">
 
-    </div>
-    <!--p>Front
-  <input type="text" name="front">
-  <p>Back
-  <input type="text" name="back"><br-->
+    
     <div class="container" style="height:{{height}}; width:{{width}}; margin-left: auto; margin-right: auto; padding-left: 0; padding-right: 0">
-        <!--<button style="background: url(img/redo_icon.png) no-repeat;" onclick=""/>
-    <button style="background: url(img/blur_icon.png) no-repeat;" ng-click="clickBlur()"/>
-    <button style="background: url(img/camera_icon.png) no-repeat;" ng-click="clickCamera()"/>-->
         <div id="blurHTML" style="height:{{height}}; width:{{width}}; margin-left: auto; margin-right: auto;">
             <div id="slide" style="height:{{height}}; width:{{width}}; margin-left: auto; margin-right: auto;">
                 <img ng-src="{{photo}}" style="position:absolute; height:{{height}}; width:{{width}};" />
@@ -46,99 +33,37 @@
         </div>
     </div>
 
-<<<<<<< HEAD
 	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-3">
-				<img src="img/undo_icon.png" style="width: 90px;" onclick="clickUndo()" />
-			</div>
-			<div class="col-xs-3">
-				<img src="img/redo_icon.png" style="width: 90px;" onclick="clickRedo()" />
-			</div>
-			<div class="col-xs-3">
-				<a href="#/blur"><img src="img/blur_icon.png" style="width: 90px;"/></a>
-			</div>
-		</div>
-	</div>
-	
-    <img ng-src="{{photo}}" style="border: 1px solid gray;width:70%;margin-left:5%;height:70%" alt=""></img>
 
- <!-- New Deck Modal -->
-    <div class="modal fade" id="newDeckModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myNewDeckModalLabel">Create New Deck</h4>
-          </div>
-          <div class="modal-body row">
-
-              <form class="form-horizontal">
-                <fieldset>
-                  <div class="form-group">
-                    <div class="col-lg-6">
-                        <input ng-model="newDeckName" type="text" class="form-control" id="newDeckInput" placeholder="My New Deck">
-                    </div>
-                  </div>
-                </fieldset>
-              </form>
- 
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" data-target="#newDeckModal">Cancel</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal" data-target="#newDeckModal" ng-click="save(deck)">Save</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Save Card Modal -->
-=======
-    <!--<div class="navbar navbar-fixed-bottom navbar-inverse" role="navigation">
-        <ul class="nav navbar-nav">
-            <li>
-                <a href="#">
-                    <img src="img/icons/home.svg" style="width: 30px;" />
-                </a>
-            </li>
-            <li>
-                <a href=""><img style="width: 30px;" /></a>
-            </li>
-            <li>
-                <a href=""><img style="width: 30px;" /></a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="img/icons/checkmark.svg" style="width: 30px;" ng-click="save()" />
-                </a>
-            </li>
-        </ul>
-            <a href="#" class="btn btn-default btn-lg btn-block">Cancel</a>
-            <a href="#" ng-click="save()" class="btn btn-default btn-lg btn-block">Save</a>    
-    </div> -->
-
-    <!-- Modal -->
->>>>>>> ecddd1ff079caa3dcb44a176b8090a7c667dc499
-    <div class="modal fade" id="saveModal">
+    <!-- Choose Deck Modal -->
+    <div class="modal fade" id="chooseDeckModal">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="myModalLabel">Save to Deck</h4>
           </div>
-          <div class="modal-body row">
+          <div class="modal-body">
 
-              <form class="form-horizontal">
+          <form class="form-horizontal">
                 <fieldset>
                   <div class="form-group">
                     <div class="col-lg-6">
-                      <h3>Choose Existing Deck</h3>
-                        <select ng-model="deck" ng-options="deck.id as deck.name for deck in decks" class="form-control" id="select">
-                        </select>
-                        <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#newDeckModal" ng-click="create(newDeckName)" data-backdrop="false"><span class="glyphicon glyphicon-plus"></span></a>
+                        
+                        <div class="radio" ng-repeat="item in options">
+                            <label>
+                                <input type="radio" name="radioGroup" ng-model="$parent.existing" value="{{item.value}}">
+                                {{item.label}}
+                            </label>
+                        </div>
+                        
+                        <br>
+                        
+                        <input ng-model="newDeckName" ng-hide="existing" type="text" class="form-control" id="newDeckInput" placeholder="New Deck Name">
+                    
+                        <select ng-model="deck" ng-show="existing" ng-options="deck.name for deck in decks | filter: { 'owned': 'true', 'created': 'true', 'deleted' : 'false' }" class="form-control"></select>
+                        
                     </div>
-
                   </div>
                 </fieldset>
               </form>
@@ -146,19 +71,16 @@
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="save(deck)">Save</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="createCard()">Confirm</button>
           </div>
         </div>
       </div>
     </div>
 
-
-
-
 	<div class="navbar navbar-fixed-bottom" role="navigation">
 	  	<div class="btn-group btn-group-justified">
 	    	<a type="button" href="#" class="btn btn-default btn-lg">Cancel</a>
-            <a class="btn btn-default btn-lg" data-toggle="modal" data-backdrop="false" data-target="#saveModal">Save</a>
+            <a class="btn btn-default btn-lg" data-toggle="modal" data-backdrop="false" data-target="#chooseDeckModal">Save</a>
 		  </div>
     </div>
   </div>

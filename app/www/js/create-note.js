@@ -1,29 +1,35 @@
 angular.module('snapnote')
     .controller('CreateNoteCtrl', function($scope, $rootScope, $routeParams, SampleDecks) {
 
+        $scope.decks = SampleDecks.getMyDecks();
+        $scope.deck = SampleDecks.getDeck({
+            id: 1
+        });
+        $scope.cardId = SampleDecks.getCardId($scope.deck.id);
+        $scope.card = SampleDecks.getFront($scope.cardId);
+        $scope.height = "300px";
+        $scope.width = "300px";
+
         $scope.photo = $routeParams.photo;
         
-        $scope.decks = SampleDecks.getMyDecks();
-
-        $scope.deck = $scope.decks[0].id;
-
-        $scope.save = function(deckId) {
-            SampleDecks.add(deckId, $scope.photo);
+        // chooseDeckModal options
+        $scope.options = [
+            {"value": "true", "label": "Select Existing Deck"},
+            {"value": "false", "label": "Create New Deck"}
+        ];
+        $scope.existing = "true";
+        
+        $scope.createCard = function() {
+            
+            var deckId = $scope.deck.id;
+            
+            if($scope.existing == "false") {
+                deckId = SampleDecks.addDeck($scope.newDeckName);  
+            }
+            
+            SampleDecks.addCard(deckId, $scope.photo, $scope.photo); // TODO need to figure out how to save blurred img    
         }
 
-<<<<<<< HEAD
-        $scope.create = function(newDeckName) {
-            SampleDecks.create(newDeckName);
-
-            // Refresh decks (I think there should be a less hacky way to do this)
-            $scope.decks = SampleDecks.getMyDecks();
-
-            // Set selected deck to new deck
-            $scope.deck = $scope.decks[$scope.decks.length - 1].id;
-        }
-
-    });
-=======
         $scope.clickUndo = function() {
         	if (undoables.length == 0)
         		return;
@@ -62,18 +68,9 @@ angular.module('snapnote')
         	}
         	undoables.push(stroke);
         }
-
-        $scope.decks = SampleDecks.getMyDecks();
-        $scope.deck = SampleDecks.getDeck({
-            id: 1
-        });
-        $scope.cardId = SampleDecks.getCardId($scope.deck.id);
-        $scope.card = SampleDecks.getFront($scope.cardId);
-        $scope.height = "300px";
-        $scope.width = "300px";
-
-        $scope.edit = function() {};
-
+        
+        // All blurring logic below here
+        
         var blur = document.getElementById("blur"),
             ctx = blur.getContext("2d"),
             blurring = false,
@@ -84,7 +81,6 @@ angular.module('snapnote')
             lineThickness = 1,
             undoables = [],
             redoables = [];
->>>>>>> ecddd1ff079caa3dcb44a176b8090a7c667dc499
 
         $('#hideBtn').click(function() {
             $('#hider').toggle();
