@@ -48,8 +48,7 @@
                 <fieldset>
                   <div class="form-group">
                     <div class="col-lg-10">
-                       <select ng-model="note.deck" class="form-control" id="select">
-                            <option ng-repeat="deck in decks">{{deck.name}}</option>
+                       <select ng-model="selected.deck.id" ng-options="deck.id as deck.name for deck in decks" class="form-control" id="select">
                         </select>
                     </div>
                   </div>
@@ -70,7 +69,7 @@
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-primary" ng-click="save(note)">Save</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="save(selected.deck.id)">Save</button>
           </div>
         </div>
       </div>
@@ -81,8 +80,8 @@
 	  	<div class="btn-group btn-group-justified">
 	    	<a type="button" href="#" class="btn btn-default btn-lg">Cancel</a>
             <a class="btn btn-default btn-lg" data-toggle="modal" data-backdrop="false" data-target="#saveModal">Save</a>
-		</div>
+		  </div>
     </div>
-    </div>
+  </div>
     
 </div>
