@@ -161,6 +161,10 @@ snapnote.factory('SampleDecks', function() {
 
 			// Add new card to supplied deck id
 			this.getDeck({id: deckId}).cards.push(newCardId);
+		},
+		create: function(deckName) {
+			// Create a new deck with specified name
+			sn.decks[sn.decks.length] = new sn.classes.Deck(sn.decks.length + 1, deckName, 0, [], true, false);
 		}
 	}
 	
