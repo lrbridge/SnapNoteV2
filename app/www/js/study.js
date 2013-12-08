@@ -70,7 +70,7 @@ angular.module('snapnote').controller('StudyCtrl',
 		};
 		
 		$scope.showTutorial = function() {
-			if(sn.showTutorial == true) {
+			if(sn.showStudyTutorial == true) {
 				$('#studyModal').modal('show');
 			}
 		};
@@ -78,7 +78,7 @@ angular.module('snapnote').controller('StudyCtrl',
 		$scope.tutorialClose = function() {
 			var checkbox = document.getElementById('studyTutorialCheck');
 			if(checkbox.checked == true) {
-				sn.showTutorial = false;
+				sn.showStudyTutorial = false;
 			}
 			checkbox.checked = false;
 		};

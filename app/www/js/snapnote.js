@@ -1,7 +1,9 @@
 // global sn object to access outside of angular
 var sn = {
 	
-	showTutorial: false,
+	showCreateNoteTutorial: false,
+	showDeckListTutorial: false,
+	showStudyTutorial: false,
 
     // phonegap 
     phonegap: {
