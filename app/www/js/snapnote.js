@@ -1,14 +1,13 @@
-
 // global sn object to access outside of angular
 var sn = {
-    
+
     // phonegap 
     phonegap: {
         pictureSource: {},
         destinationType: {},
         onDeviceReady: function() { // device APIs are available
-            pictureSource=navigator.camera.PictureSourceType;
-            destinationType=navigator.camera.DestinationType;
+            pictureSource = navigator.camera.PictureSourceType;
+            destinationType = navigator.camera.DestinationType;
         }
     },
     
@@ -51,7 +50,7 @@ sn.notes[sn.notes.length] = new sn.classes.Note(3, "img/elmo-blurred.png", "img/
 sn.notes[sn.notes.length] = new sn.classes.Note(4, "img/thecount-blurred.png", "img/thecount.png");
 // global angular snapnote module object
 var snapnote = angular.module("snapnote", ["ngRoute"]);
-     
+
 snapnote.config(function($routeProvider) {
 	$routeProvider.when("/",
 	{
@@ -152,12 +151,19 @@ snapnote.factory('SampleDecks', function() {
 			}
 			return sn.decks[_deckId].cards[sn.decks[_deckId].topCard];
 		},
-		add: function() {
-            alert("add");
+		add: function(deckId, photo) {
+			// Pick next value for card id
+			var newCardId = sn.notes.length + 1;
+
+			// Create a new note from card
+			sn.notes[sn.notes.length] = new sn.classes.Note(newCardId,photo);
+
+			// Add new card to supplied deck id
+			this.getDeck({id: deckId}).cards.push(newCardId);
 		}
 	}
 	
 });
 
 // Wait for device API libraries to load
-document.addEventListener("deviceready",sn.phonegap.onDeviceReady,false);
+document.addEventListener("deviceready", sn.phonegap.onDeviceReady, false);
