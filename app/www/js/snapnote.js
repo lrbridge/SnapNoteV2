@@ -96,15 +96,15 @@ snapnote.config(function($routeProvider) {
 		templateUrl: "partials/create-note.html",
 		controller: "CreateNoteCtrl"
 	})
-	.when('/:id/view', 
-	{
-		templateUrl: 'partials/deck.html', 
-		controller: 'DeckCtrl'
-	})
 	.when('/:id/study', 
 	{
 		templateUrl: 'partials/study.html', 
 		controller: 'StudyCtrl'
+	})
+    .when('/chooseImage', 
+	{
+		templateUrl: 'partials/choose-image.html', 
+		controller: 'ChooseImageCtrl'
 	})
 	.when("/blur",
 	{
