@@ -1,22 +1,52 @@
 <div class="newNotecard">
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>-->
-			<h3>
-				<a href="#"><button class="btn btn-mini pull-left">Home</button></a>
-				New Note
-			</h3>
-        </div>
-      </div>
-    </div>
-	<div class="page-header">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="float: none" role="navigation">
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="#">
+                    <img src="img/icons/back.svg" style="width: 30px;" />
 
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="img/icons/undo.svg" style="width: 30px;" ng-click="clickUndo()" />
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="img/icons/redo.svg" style="width: 30px;" ng-click="clickRedo()" />
+                </a>
+            </li>
+            <!--<li>
+                <a href="">
+                    <img src="img/icons/camera.svg" style="width: 30px;" data-toggle="modal" data-target="#cameraModal" />
+                </a>
+            </li>-->
+        </ul>
+    </div>
+    <div class="page-header">
+
+    </div>
+    <!--p>Front
+  <input type="text" name="front">
+  <p>Back
+  <input type="text" name="back"><br-->
+    <div class="container" style="height:{{height}}; width:{{width}}; margin-left: auto; margin-right: auto; padding-left: 0; padding-right: 0">
+        <!--<button style="background: url(img/redo_icon.png) no-repeat;" onclick=""/>
+    <button style="background: url(img/blur_icon.png) no-repeat;" ng-click="clickBlur()"/>
+    <button style="background: url(img/camera_icon.png) no-repeat;" ng-click="clickCamera()"/>-->
+        <div id="blurHTML" style="height:{{height}}; width:{{width}}; margin-left: auto; margin-right: auto;">
+            <div id="slide" style="height:{{height}}; width:{{width}}; margin-left: auto; margin-right: auto;">
+                <img ng-src="{{photo}}" style="position:absolute; height:{{height}}; width:{{width}};" />
+                <div id="hider" style="position:absolute; height:{{height}}; width:{{width}};">
+                    <canvas id="blur" height={{height}} width={{width}} style="position:absolute; height:{{height}}; width:{{width}};">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<<<<<<< HEAD
 	</div>
 	<div class="container">
 		<div class="row">
@@ -64,6 +94,32 @@
     </div>
 
     <!-- Save Card Modal -->
+=======
+    <!--<div class="navbar navbar-fixed-bottom navbar-inverse" role="navigation">
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="#">
+                    <img src="img/icons/home.svg" style="width: 30px;" />
+                </a>
+            </li>
+            <li>
+                <a href=""><img style="width: 30px;" /></a>
+            </li>
+            <li>
+                <a href=""><img style="width: 30px;" /></a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="img/icons/checkmark.svg" style="width: 30px;" ng-click="save()" />
+                </a>
+            </li>
+        </ul>
+            <a href="#" class="btn btn-default btn-lg btn-block">Cancel</a>
+            <a href="#" ng-click="save()" class="btn btn-default btn-lg btn-block">Save</a>    
+    </div> -->
+
+    <!-- Modal -->
+>>>>>>> ecddd1ff079caa3dcb44a176b8090a7c667dc499
     <div class="modal fade" id="saveModal">
       <div class="modal-dialog">
         <div class="modal-content">
