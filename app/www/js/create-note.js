@@ -1,7 +1,9 @@
 angular.module('snapnote')
-    .controller('CreateNoteCtrl', function($scope, $routeParams, SampleDecks) {
+    .controller('CreateNoteCtrl', function($scope, $rootScope, $routeParams, SampleDecks) {
 
         $scope.photo = $routeParams.photo;
+        
+        $scope.decks = SampleDecks.getMyDecks();
 
         $scope.capturePhoto = function() {
             
@@ -12,7 +14,9 @@ angular.module('snapnote')
                 destinationType: sn.phonegap.destinationType.DATA_URL });
         }
 
-        $scope.save = function() {
+        $scope.save = function(deck) {
+            console.log(deck);
+            console.log($scope.photo);
             SampleDecks.add();
         }
 
