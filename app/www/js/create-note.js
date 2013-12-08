@@ -5,25 +5,30 @@ angular.module('snapnote')
         
         $scope.decks = SampleDecks.getMyDecks();
 
-        $scope.deck = $scope.decks[0].id;
-
+        //$scope.selectedDeck = $scope.decks[0].id;
+        
+        $scope.options = [
+            {"value": 1, "label": "Select Existing Deck"},
+            {"value": 0, "label": "Create New Deck"}
+        ];
+        $scope.existing = 1;
+        
         $scope.save = function(deckId) {
+            console.log($scope.deck);
             SampleDecks.add(deckId, $scope.photo);
         }
 
-<<<<<<< HEAD
         $scope.create = function(newDeckName) {
+            
             SampleDecks.create(newDeckName);
 
             // Refresh decks (I think there should be a less hacky way to do this)
             $scope.decks = SampleDecks.getMyDecks();
 
             // Set selected deck to new deck
-            $scope.deck = $scope.decks[$scope.decks.length - 1].id;
+            //$scope.selectedDeck = $scope.decks[$scope.decks.length - 1].id;
         }
 
-    });
-=======
         $scope.clickUndo = function() {
         	if (undoables.length == 0)
         		return;
@@ -84,7 +89,6 @@ angular.module('snapnote')
             lineThickness = 1,
             undoables = [],
             redoables = [];
->>>>>>> ecddd1ff079caa3dcb44a176b8090a7c667dc499
 
         $('#hideBtn').click(function() {
             $('#hider').toggle();
