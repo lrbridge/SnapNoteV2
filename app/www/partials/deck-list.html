@@ -1,73 +1,94 @@
-<div class="deck-list">
+<div id="deck-list-view">
 
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>-->
-          <a class="navbar-brand" href="#">SnapNote</a>
-        </div>
-      </div>
+	<!-- Searchbox -->
+    <input id="deck-search" type="search" placeholder="Search online for decks" ng-model="searchText"></input>
+
+    <!-- Search back button. Hidden behind searchbox when not in search mode. -->
+    <button id="deck-search-back" class="btn btn-primary">back</button>
+
+    <!-- Search results list -->
+	<div id="search-results" class="list-group">
+		<div ng-repeat="deck in decks | nonBlankFilter:searchText">
+			<div ng-show="!deck.owned" class="list-group-item download" ng-click="download(deck)">
+        		<span class="deck-name">{{ deck.name }}</span>
+        		<span class="icon">+</span>
+			</div>
+			<div ng-show="deck.owned" class="list-group-item owned">
+        		<span class="deck-name">{{ deck.name }}</span>
+        		<span class="icon">Owned</span>
+			</div>
+		</div>                     
     </div>
-	<div class="page-header">
 
-	</div>
-    <div class="container">
-		<div class="row">
-			<input type="text" class="form-control" id="search" placeholder="Search online for decks">
+    <!-- Content shown when not searching for decks -->
+    <div id="main-content">
+		<!-- List of decks owned by user -->
+	    <div id="deck-list">
+		    <h1 id="deck-list-header">My Decks</h1>
+		    <div id="deck-list-content">
+				<div class="list-group">
+					<!-- Decks created by user -->
+					<h3 id="created">Created</h3>
+					<div ng-repeat="deck in decks  | filter: { 'owned': 'true', 'created': 'true', 'deleted' : 'false' } | orderBy:'name'">
+						<a href="#/{{ deck.id }}/study" class="list-group-item">
+							<h4 class="list-group-item-heading">{{ deck.name }}</h4>
+						</a>
+					</div>
+					<!-- Decks downloaded by user -->
+					<h3 id="downloaded">Downloaded</h3>
+					<div ng-repeat="deck in decks  | filter: { 'owned': 'true', 'created': 'false', 'deleted' : 'false' } | orderBy:'name'">
+						<a href="#/{{ deck.id }}/study" class="list-group-item">
+							<h4 class="list-group-item-heading">{{ deck.name }}</h4>
+						</a>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="row">
-			<h1>
-				My Decks
-			</h1>
-		</div>
-		<div class="row">
 
-		</div>
+		<!-- New Note Button -->
+	    <button id="new-note" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-backdrop="true" data-target="#newNoteModal">New Note</button>
+	    </div>
 	</div>
-	<div class="list-group">
-		<h2>
-			Created
-		</h2>
-		<div ng-repeat="deck in decks | orderBy:'name' | filter: { 'created': 'true', 'deleted' : 'false' } ">
-			<a href="#/{{ deck.id }}/study" class="list-group-item"><h4 class="list-group-item-heading">{{ deck.name }}</h4></a>
-		</div>
-		<h2>
-			Downloaded
-		</h2>
-		<div ng-repeat="deck in decks | orderBy:'name' | filter: { 'created': 'false', 'deleted' : 'false' }">
-			<a href="#/{{ deck.id }}/study" class="list-group-item"><h4 class="list-group-item-heading">{{ deck.name }}</h4></a>
+
+	<!-- Modal dialog that shows download progress -->
+	<div id="download-progress-modal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<h3 id="title">Downloading Deck...</h3>
+					<h4 id="deck-name"></h4>
+					<div id="download-progress-box">
+		        		<div class="progress">
+							<div class="progress-bar progress-bar-success"></div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="newNoteModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Choose A Photo</h4>
-          </div>
-          <div class="modal-body">
-            <p>Choose an photo to use as the base of your new flashcard.</p>
-            <button type="button" class="btn btn-primary" ng-click="capturePhoto()">Take New Photo</button>
-            <br>
-            <br>
-            <span ng-repeat="photo in photos">
-                <a href="#/create/{{photo}}">
-                    <img ng-src="{{photo}}" style="width:20%;height:20%;margin:1%" alt=""></img>                
-                </a>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-	
-	<div class="navbar navbar-fixed-bottom" role="navigation">
-        <button class="btn btn-default btn-lg btn-block" data-toggle="modal" data-backdrop="false" data-target="#newNoteModal">New Note</button>
-    </div>
+	<!-- Modal dialog for notecard creation -->
+	<div id="newNoteModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Choose A Photo</h4>
+				</div>
+				<div class="modal-body">
+					<p>Choose an photo to use as the base of your new flashcard.</p>
+					<button type="button" class="btn btn-primary" ng-click="capturePhoto()">Take New Photo</button>
+					<br>
+					<br>
+					<span ng-repeat="photo in photos">
+						<a href="#/create/{{photo}}">
+							<img ng-src="{{photo}}" style="width:20%;height:20%;margin:1%" alt=""></img>                
+						</a>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
+

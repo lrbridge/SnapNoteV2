@@ -19,13 +19,14 @@ var sn = {
 	},
 	
 	classes: {
-		Deck: function(_id, _name, _topCard, _cards, _created, _deleted) {
+		Deck: function(_id, _name, _topCard, _cards, _created, _deleted, _owned) {
 			this.id=_id;
 			this.name=_name;
 			this.topCard=_topCard;
 			this.cards=_cards;
 			this.created=_created;
 			this.deleted=_deleted;
+			this.owned=_owned;
 		},
 		Note: function(_id, _front, _back) {
 			this.id=_id;
@@ -40,14 +41,45 @@ var sn = {
 	notes: [
 	]
 };
-// initialize data
-sn.decks[sn.decks.length] = new sn.classes.Deck(1, "Dessert Facts", 0, [1], true, false);
-sn.notes[sn.notes.length] = new sn.classes.Note(1, "img/wrong-slide2-blurred.jpg", "img/wrong-slide2.JPG");
 
-sn.decks[sn.decks.length] = new sn.classes.Deck(2, "Sesame Street Chars", 0, [2,3,4], false, false);
-sn.notes[sn.notes.length] = new sn.classes.Note(2, "img/cookiemonster-blurred.png","img/cookiemonster.png");
-sn.notes[sn.notes.length] = new sn.classes.Note(3, "img/elmo-blurred.png", "img/elmo.png");
-sn.notes[sn.notes.length] = new sn.classes.Note(4, "img/thecount-blurred.png", "img/thecount.png");
+// Create deck: My Dessert Facts
+sn.decks[sn.decks.length] = new sn.classes.Deck(1,"My Dessert Facts",0,[1],true,false,true);
+sn.notes[sn.notes.length] = new sn.classes.Note(1,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
+
+// Create deck: Dessert Facts II
+sn.decks[sn.decks.length] = new sn.classes.Deck(1,"Dessert Facts II",0,[1],false,false,false);
+sn.notes[sn.notes.length] = new sn.classes.Note(1,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
+
+// Create deck: Dessert Facts III
+sn.decks[sn.decks.length] = new sn.classes.Deck(1,"Dessert Facts III",0,[1],false,false,false);
+sn.notes[sn.notes.length] = new sn.classes.Note(1,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
+
+// Create deck: Dessert Facts IV
+sn.decks[sn.decks.length] = new sn.classes.Deck(1,"Dessert Facts IV",0,[1],false,false,false);
+sn.notes[sn.notes.length] = new sn.classes.Note(1,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
+
+// Create deck: Dessert Facts V
+sn.decks[sn.decks.length] = new sn.classes.Deck(1,"Dessert Facts V",0,[1],false,false,false);
+sn.notes[sn.notes.length] = new sn.classes.Note(1,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
+
+// Create deck: Sesame Street
+sn.decks[sn.decks.length] = new sn.classes.Deck(2,"Sesame Street",0,[2,3,4],false,false,true);
+sn.notes[sn.notes.length] = new sn.classes.Note(2,"img/cookiemonster-blurred.png","img/cookiemonster.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(3,"img/elmo-blurred.png","img/elmo.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(4,"img/thecount-blurred.png","img/thecount.png");
+
+// Create deck: Sesame Street II
+sn.decks[sn.decks.length] = new sn.classes.Deck(2,"Sesame Street II",0,[2,3,4],false,false,false);
+sn.notes[sn.notes.length] = new sn.classes.Note(2,"img/cookiemonster-blurred.png","img/cookiemonster.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(3,"img/elmo-blurred.png","img/elmo.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(4,"img/thecount-blurred.png","img/thecount.png");
+
+// Create deck: Sesame Street III
+sn.decks[sn.decks.length] = new sn.classes.Deck(2,"Sesame Street III",0,[2,3,4],false,false,false);
+sn.notes[sn.notes.length] = new sn.classes.Note(2,"img/cookiemonster-blurred.png","img/cookiemonster.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(3,"img/elmo-blurred.png","img/elmo.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(4,"img/thecount-blurred.png","img/thecount.png");
+
 // global angular snapnote module object
 var snapnote = angular.module("snapnote", ["ngRoute"]);
 
@@ -167,6 +199,16 @@ snapnote.factory('SampleDecks', function() {
 		}
 	}
 	
+});
+
+snapnote.filter("nonBlankFilter", function($filter) {
+    return function(array, params) {
+        if (params) {
+            return $filter('filter')(array, params);
+        } else {
+            return [];
+        }
+    }
 });
 
 // Wait for device API libraries to load
