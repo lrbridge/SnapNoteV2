@@ -1,5 +1,11 @@
 angular.module('snapnote')
-    .controller('CreateNoteCtrl', function($scope, SampleDecks) {
+    .controller('CreateNoteCtrl', function($scope, $rootScope, $routeParams, SampleDecks) {
+
+        $scope.photo = $routeParams.photo;
+        
+        $scope.decks = SampleDecks.getMyDecks();
+
+        $scope.deck = $scope.decks[0].id;
 
         $scope.capturePhoto = function() {
 
@@ -12,8 +18,8 @@ angular.module('snapnote')
             });
         }
 
-        $scope.save = function() {
-            SampleDecks.add();
+        $scope.save = function(deckId) {
+            SampleDecks.add(deckId, $scope.photo);
         }
 
         $scope.clickUndo = function() {

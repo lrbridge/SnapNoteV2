@@ -17,11 +17,6 @@
 
 	</div>
     <div class="container">
-		<!--<div class="row">
-			&nbsp;<br/>
-			<br/>
-			<br/>
-		</div>-->
 		<div class="row">
 			<input type="text" class="form-control" id="search" placeholder="Search online for decks">
 		</div>
@@ -35,14 +30,44 @@
 		</div>
 	</div>
 	<div class="list-group">
-		<div ng-repeat="deck in decks | orderBy:'name'">
+		<h2>
+			Created
+		</h2>
+		<div ng-repeat="deck in decks | orderBy:'name' | filter: { 'created': 'true', 'deleted' : 'false' } ">
+			<a href="#/{{ deck.id }}/study" class="list-group-item"><h4 class="list-group-item-heading">{{ deck.name }}</h4></a>
+		</div>
+		<h2>
+			Downloaded
+		</h2>
+		<div ng-repeat="deck in decks | orderBy:'name' | filter: { 'created': 'false', 'deleted' : 'false' }">
 			<a href="#/{{ deck.id }}/study" class="list-group-item"><h4 class="list-group-item-heading">{{ deck.name }}</h4></a>
 		</div>
 	</div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="newNoteModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Choose A Photo</h4>
+          </div>
+          <div class="modal-body">
+            <p>Choose an photo to use as the base of your new flashcard.</p>
+            <button type="button" class="btn btn-primary" ng-click="capturePhoto()">Take New Photo</button>
+            <br>
+            <br>
+            <span ng-repeat="photo in photos">
+                <a href="#/create/{{photo}}">
+                    <img ng-src="{{photo}}" style="width:20%;height:20%" alt=""></img>                
+                </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
 	
-
-
 	<div class="navbar navbar-fixed-bottom" role="navigation">
-		<a href="#/create" type="button" class="btn btn-default btn-lg btn-block">New Note</a>
+        <button class="btn btn-default btn-lg btn-block" data-toggle="modal" data-backdrop="false" data-target="#newNoteModal">New Note</button>
     </div>
 </div>
