@@ -16,21 +16,47 @@
 	<div class="page-header">
 
 	</div>
-    <div class="container" ng-click="flipCard($event)">
+    <div class="container" >
 
 	<!-- src here will become the card's front -->
 	<img  id="note" 
         style="border: 1px solid gray;width:90%;margin-left:5%;height:80%" 
         ng-src="{{card}}" 
+		ng-click="flipCard($event)"
         ng-mousedown="start($event)" 
         ng-mouseup="end($event)" 
         alt="">
 	</img>
 	
 	<div>Tap on the right side of the screen to flip the note.</div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="optionsModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">{{ deck.name }} Options</h4>
+          </div>
+          <div class="modal-body">
+            <button type="button" class="btn btn-primary" ng-click="addReminder()">Add Reminder</button>
+            <button type="button" class="btn btn-primary" ng-click="deleteDeck()">Delete Deck</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 	
-	<button ng-click="nextCard()">Next Card</button>
+	
+	<div class="study-options">
+	  	<div class="btn-group btn-group-justified">
+			<a class="btn btn-default btn-block" ng-click="previousCard()">Previous Card</a>
+			<a class="btn btn-default btn-block" data-toggle="modal" data-backdrop="false" data-target="#optionsModal">Options</a>
+			<a id="nextNote" class="btn btn-default btn-block" ng-click="nextCard()">Next Card</a>
+		</div>
 	</div>
+	
+	</div>
+	
 
 </div>
 

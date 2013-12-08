@@ -20,14 +20,15 @@ var sn = {
 	},
 	
 	classes: {
-		Deck: function(_id,_name, _topCard,_cards, _created) {
+		Deck: function(_id, _name, _topCard, _cards, _created, _deleted) {
 			this.id=_id;
 			this.name=_name;
 			this.topCard=_topCard;
 			this.cards=_cards;
 			this.created=_created;
+			this.deleted=_deleted;
 		},
-		Note: function(_id,_front,_back) {
+		Note: function(_id, _front, _back) {
 			this.id=_id;
 			this.front=_front;
 			this.back=_back;
@@ -41,13 +42,13 @@ var sn = {
 	]
 };
 // initialize data
-sn.decks[sn.decks.length] = new sn.classes.Deck(1,"Dessert Facts",0,[1],true);
-sn.notes[sn.notes.length] = new sn.classes.Note(1,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
+sn.decks[sn.decks.length] = new sn.classes.Deck(1, "Dessert Facts", 0, [1], true, false);
+sn.notes[sn.notes.length] = new sn.classes.Note(1, "img/wrong-slide2-blurred.jpg", "img/wrong-slide2.JPG");
 
-sn.decks[sn.decks.length] = new sn.classes.Deck(2,"Sesame Street Chars",0,[2,3,4],false);
-sn.notes[sn.notes.length] = new sn.classes.Note(2,"img/cookiemonster-blurred.png","img/cookiemonster.png");
-sn.notes[sn.notes.length] = new sn.classes.Note(3,"img/elmo-blurred.png","img/elmo.png");
-sn.notes[sn.notes.length] = new sn.classes.Note(4,"img/thecount-blurred.png","img/thecount.png");
+sn.decks[sn.decks.length] = new sn.classes.Deck(2, "Sesame Street Chars", 0, [2,3,4], false, false);
+sn.notes[sn.notes.length] = new sn.classes.Note(2, "img/cookiemonster-blurred.png","img/cookiemonster.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(3, "img/elmo-blurred.png", "img/elmo.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(4, "img/thecount-blurred.png", "img/thecount.png");
 // global angular snapnote module object
 var snapnote = angular.module("snapnote", ["ngRoute"]);
      
@@ -132,6 +133,22 @@ snapnote.factory('SampleDecks', function() {
 				sn.decks[_deckId].topCard = 0;
 			} else {
 				sn.decks[_deckId].topCard++;
+			}
+			return sn.decks[_deckId].cards[sn.decks[_deckId].topCard];
+		},
+		getPreviousCardId: function(deckId) {
+			var _deckId = 0;
+			for(var i=0;i<sn.decks.length;i++) {
+				if(sn.decks[i].id == deckId) {
+					_deckId = i;
+				}
+			}
+			var topCard = sn.decks[_deckId].topCard;
+			if(topCard == 0)
+			{
+				sn.decks[_deckId].topCard = sn.decks[_deckId].cards.length - 1;
+			} else {
+				sn.decks[_deckId].topCard--;
 			}
 			return sn.decks[_deckId].cards[sn.decks[_deckId].topCard];
 		},

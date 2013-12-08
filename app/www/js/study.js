@@ -18,8 +18,21 @@ angular.module('snapnote').controller('StudyCtrl',
 			$scope.start = 0;
 		};
 		
+		$scope.previousCard = function() {
+		//alert($scope.deck.id);
+		    $scope.cardId = SampleDecks.getPreviousCardId($scope.deck.id);
+			//alert("cardid: "+$scope.cardId);
+			$scope.card = SampleDecks.getFront($scope.cardId);
+			$scope.flipCount = 0;
+			$scope.start = 0;
+		};
+		
 		$scope.flipCard = function(e) {
-			if(e.x > (screen.width/2)*.75) {
+		var note = document.getElementById('note');
+		var noteRect = note.getBoundingClientRect();
+		var nextNote = document.getElementById('nextNote');
+		var nextRect = nextNote.getBoundingClientRect();
+			if(e.x > noteRect.right*.75 && e.y < nextRect.top) {
 				var img = document.getElementById('note');
 				if($scope.flipCount%2==0) //src here will become the card's back
 					$scope.card = SampleDecks.getBack($scope.cardId);
@@ -42,5 +55,16 @@ angular.module('snapnote').controller('StudyCtrl',
 					$scope.card = SampleDecks.getFront($scope.cardId);
 				flipCount++;
 			}
+		};
+		
+		$scope.deleteDeck = function() {
+			var confirmation = confirm("Are you sure you want to delete this deck?");
+			if( confirmation ) {
+				$scope.deck.deleted = true;
+				location.href = "#";
+			}
+		};
+		
+		$scope.addReminder = function() {
 		};
 	});
