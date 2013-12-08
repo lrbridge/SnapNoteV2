@@ -35,7 +35,16 @@
 		</div>
 	</div>
 	<div class="list-group">
-		<div ng-repeat="deck in decks | orderBy:'name'">
+		<h2>
+			Created
+		</h2>
+		<div ng-repeat="deck in decks | orderBy:'name' | filter: { 'created': 'true' }">
+			<a href="#/{{ deck.id }}/study" class="list-group-item"><h4 class="list-group-item-heading">{{ deck.name }}</h4></a>
+		</div>
+		<h2>
+			Downloaded
+		</h2>
+		<div ng-repeat="deck in decks | orderBy:'name' | filter: { 'created': 'false' }">
 			<a href="#/{{ deck.id }}/study" class="list-group-item"><h4 class="list-group-item-heading">{{ deck.name }}</h4></a>
 		</div>
 	</div>
