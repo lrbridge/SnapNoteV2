@@ -2,6 +2,7 @@ angular.module('snapnote').controller('StudyCtrl',
     function ($scope, $routeParams, SampleDecks) {
         $scope.flipCount = 0;
 		$scope.start = 0;
+		$scope.tutorialCount = 0;
 			
 		$scope.deck = SampleDecks.getDeck({id: $routeParams.id});
 		
@@ -66,5 +67,39 @@ angular.module('snapnote').controller('StudyCtrl',
 		};
 		
 		$scope.addReminder = function() {
+		};
+		
+		$scope.showTutorial = function() {
+			if(sn.showTutorial == true) {
+				$('#studyModal').modal('show');
+			}
+		};
+		
+		$scope.tutorialClose = function() {
+			var checkbox = document.getElementById('studyTutorialCheck');
+			if(checkbox.checked == true) {
+				sn.showTutorial = false;
+			}
+			checkbox.checked = false;
+		};
+		
+		$scope.nextStudyTutorial = function() {
+			var img = document.getElementById('studyTutorialImg');
+			if($scope.tutorialCount == 0) {
+				img.src = "img/study-tutorial-move.png";
+				$("h4.studyBodyLabel").text("Tap 'Previous' or 'Next' to advance to the last or next card, respectively.");
+			}
+			else if($scope.tutorialCount == 1){
+				img.src = "img/study-tutorial-options.png";
+				$("h4.studyBodyLabel").text("Tap 'Options' to add a reminder for this deck or to delete this deck.");
+				var nextBtn = document.getElementById('nextStudyTutorialBtn');
+				nextBtn.innerHTML = 'Done';
+			}
+			else {
+				$('#studyModal').modal('hide');
+				$scope.tutorialCount = -1;
+				$scope.tutorialClose();
+			}
+			$scope.tutorialCount++;
 		};
 	});

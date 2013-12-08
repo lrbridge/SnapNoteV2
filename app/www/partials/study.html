@@ -1,4 +1,4 @@
-<div class="study">
+<div class="study" ng-init="showTutorial()">
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -30,7 +30,7 @@
 	
 	<div>Tap on the right side of the screen to flip the note.</div>
 
-    <!-- Modal -->
+    <!-- Modal dialog for deck options -->
     <div class="modal fade" id="optionsModal">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -44,8 +44,7 @@
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-	
+    </div><!-- /.modal -->	
 	
 	<div class="study-options">
 	  	<div class="btn-group btn-group-justified">
@@ -53,10 +52,33 @@
 			<a class="btn btn-default btn-block" data-toggle="modal" data-backdrop="false" data-target="#optionsModal">Options</a>
 			<a id="nextNote" class="btn btn-default btn-block" ng-click="nextCard()">Next Card</a>
 		</div>
-	</div>
+	</div>	
 	
-	</div>
-	
+	</div>	
+
+    <!-- Modal dialog for study tutorial -->
+    <div class="modal fade" id="studyModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" ng-click="tutorialClose()" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="studyModalLabel">Study Tutorial</h4>
+          </div>
+		  <div class="modal-body">
+			<h4 class="studyBodyLabel">Tap the right side of the screen to reveal any blurred sections.</h4>
+			<img  id="studyTutorialImg" 
+				style="border: 1px solid gray;width:90%;margin-left:5%;height:80%" 
+				ng-src="img/study-tutorial-tap.png" 
+				alt="">
+			</img>
+		  </div>
+          <div class="modal-footer">
+            <button type="button" id="nextStudyTutorialBtn" class="btn btn-primary pull-left" ng-click="nextStudyTutorial()">Next</button>
+            <input type="checkbox" id="studyTutorialCheck"> Do not display again</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->	
 
 </div>
 
