@@ -47,38 +47,38 @@ sn.decks[sn.decks.length] = new sn.classes.Deck(1,"My Dessert Facts",0,[1],true,
 sn.notes[sn.notes.length] = new sn.classes.Note(1,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
 
 // Create deck: Dessert Facts II
-sn.decks[sn.decks.length] = new sn.classes.Deck(1,"Dessert Facts II",0,[1],false,false,false);
-sn.notes[sn.notes.length] = new sn.classes.Note(1,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
+sn.decks[sn.decks.length] = new sn.classes.Deck(2,"Dessert Facts II",0,[2],false,false,false);
+sn.notes[sn.notes.length] = new sn.classes.Note(2,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
 
 // Create deck: Dessert Facts III
-sn.decks[sn.decks.length] = new sn.classes.Deck(1,"Dessert Facts III",0,[1],false,false,false);
-sn.notes[sn.notes.length] = new sn.classes.Note(1,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
+sn.decks[sn.decks.length] = new sn.classes.Deck(3,"Dessert Facts III",0,[3],false,false,false);
+sn.notes[sn.notes.length] = new sn.classes.Note(3,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
 
 // Create deck: Dessert Facts IV
-sn.decks[sn.decks.length] = new sn.classes.Deck(1,"Dessert Facts IV",0,[1],false,false,false);
-sn.notes[sn.notes.length] = new sn.classes.Note(1,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
+sn.decks[sn.decks.length] = new sn.classes.Deck(4,"Dessert Facts IV",0,[4],false,false,false);
+sn.notes[sn.notes.length] = new sn.classes.Note(4,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
 
 // Create deck: Dessert Facts V
-sn.decks[sn.decks.length] = new sn.classes.Deck(1,"Dessert Facts V",0,[1],false,false,false);
-sn.notes[sn.notes.length] = new sn.classes.Note(1,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
+sn.decks[sn.decks.length] = new sn.classes.Deck(5,"Dessert Facts V",0,[5],false,false,false);
+sn.notes[sn.notes.length] = new sn.classes.Note(5,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
 
 // Create deck: Sesame Street
-sn.decks[sn.decks.length] = new sn.classes.Deck(2,"Sesame Street",0,[2,3,4],false,false,true);
-sn.notes[sn.notes.length] = new sn.classes.Note(2,"img/cookiemonster-blurred.png","img/cookiemonster.png");
-sn.notes[sn.notes.length] = new sn.classes.Note(3,"img/elmo-blurred.png","img/elmo.png");
-sn.notes[sn.notes.length] = new sn.classes.Note(4,"img/thecount-blurred.png","img/thecount.png");
+sn.decks[sn.decks.length] = new sn.classes.Deck(6,"Sesame Street",0,[6,7,8],false,false,true);
+sn.notes[sn.notes.length] = new sn.classes.Note(6,"img/cookiemonster-blurred.png","img/cookiemonster.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(7,"img/elmo-blurred.png","img/elmo.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(8,"img/thecount-blurred.png","img/thecount.png");
 
 // Create deck: Sesame Street II
-sn.decks[sn.decks.length] = new sn.classes.Deck(2,"Sesame Street II",0,[2,3,4],false,false,false);
-sn.notes[sn.notes.length] = new sn.classes.Note(2,"img/cookiemonster-blurred.png","img/cookiemonster.png");
-sn.notes[sn.notes.length] = new sn.classes.Note(3,"img/elmo-blurred.png","img/elmo.png");
-sn.notes[sn.notes.length] = new sn.classes.Note(4,"img/thecount-blurred.png","img/thecount.png");
+sn.decks[sn.decks.length] = new sn.classes.Deck(7,"Sesame Street II",0,[9,10,11],false,false,false);
+sn.notes[sn.notes.length] = new sn.classes.Note(9,"img/cookiemonster-blurred.png","img/cookiemonster.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(10,"img/elmo-blurred.png","img/elmo.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(11,"img/thecount-blurred.png","img/thecount.png");
 
 // Create deck: Sesame Street III
-sn.decks[sn.decks.length] = new sn.classes.Deck(2,"Sesame Street III",0,[2,3,4],false,false,false);
-sn.notes[sn.notes.length] = new sn.classes.Note(2,"img/cookiemonster-blurred.png","img/cookiemonster.png");
-sn.notes[sn.notes.length] = new sn.classes.Note(3,"img/elmo-blurred.png","img/elmo.png");
-sn.notes[sn.notes.length] = new sn.classes.Note(4,"img/thecount-blurred.png","img/thecount.png");
+sn.decks[sn.decks.length] = new sn.classes.Deck(8,"Sesame Street III",0,[12,13,14],false,false,false);
+sn.notes[sn.notes.length] = new sn.classes.Note(12,"img/cookiemonster-blurred.png","img/cookiemonster.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(13,"img/elmo-blurred.png","img/elmo.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(14,"img/thecount-blurred.png","img/thecount.png");
 
 // global angular snapnote module object
 var snapnote = angular.module("snapnote", ["ngRoute"]);
