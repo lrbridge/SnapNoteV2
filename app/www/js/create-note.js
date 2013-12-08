@@ -5,6 +5,8 @@ angular.module('snapnote')
         
         $scope.decks = SampleDecks.getMyDecks();
 
+        $scope.deck = $scope.decks[0].id;
+
         $scope.capturePhoto = function() {
             
             alert("about to capture a photo");
