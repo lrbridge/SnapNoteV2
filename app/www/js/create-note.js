@@ -20,6 +20,16 @@ angular.module('snapnote')
             SampleDecks.add(deckId, $scope.photo);
         }
 
+        $scope.create = function(newDeckName) {
+            SampleDecks.create(newDeckName);
+
+            // Refresh decks (I think there should be a less hacky way to do this)
+            $scope.decks = SampleDecks.getMyDecks();
+
+            // Set selected deck to new deck
+            $scope.deck = $scope.decks[$scope.decks.length - 1].id;
+        }
+
     });
 
     // Called when a photo is successfully retrieved

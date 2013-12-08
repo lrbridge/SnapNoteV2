@@ -33,8 +33,37 @@
 	</div>
 	
     <img ng-src="{{photo}}" style="border: 1px solid gray;width:70%;margin-left:5%;height:70%" alt=""></img>
-    
-    <!-- Modal -->
+
+ <!-- New Deck Modal -->
+    <div class="modal fade" id="newDeckModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myNewDeckModalLabel">Create New Deck</h4>
+          </div>
+          <div class="modal-body row">
+
+              <form class="form-horizontal">
+                <fieldset>
+                  <div class="form-group">
+                    <div class="col-lg-6">
+                        <input ng-model="newDeckName" type="text" class="form-control" id="newDeckInput" placeholder="My New Deck">
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+ 
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" data-target="#newDeckModal">Cancel</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" data-target="#newDeckModal" ng-click="save(deck)">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Save Card Modal -->
     <div class="modal fade" id="saveModal">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -42,27 +71,19 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="myModalLabel">Save to Deck</h4>
           </div>
-          <div class="modal-body">
+          <div class="modal-body row">
 
               <form class="form-horizontal">
                 <fieldset>
                   <div class="form-group">
-                    <div class="col-lg-10">
-                       <select ng-model="deck" ng-options="deck.id as deck.name for deck in decks" class="form-control" id="select">
+                    <div class="col-lg-6">
+                      <h3>Choose Existing Deck</h3>
+                        <select ng-model="deck" ng-options="deck.id as deck.name for deck in decks" class="form-control" id="select">
                         </select>
+                        <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#newDeckModal" ng-click="create(newDeckName)" data-backdrop="false"><span class="glyphicon glyphicon-plus"></span></a>
                     </div>
+
                   </div>
-                    
-                  <!--div class="checkbox">
-                    <label>
-                      <input type="checkbox"> Checkbox
-                    </label>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-lg-10">
-                        <input type="text" ng-show="isNewDeck" class="form-control" placeholder="Deck Name">
-                    </div>
-                  </div-->
                 </fieldset>
               </form>
  
@@ -74,6 +95,8 @@
         </div>
       </div>
     </div>
+
+
 
 
 	<div class="navbar navbar-fixed-bottom" role="navigation">
