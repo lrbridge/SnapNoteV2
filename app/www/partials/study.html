@@ -16,17 +16,16 @@
 	<div class="page-header">
 
 	</div>
-    <div class="container">
+    <div class="container" ng-click="flipCard($event)">
 
 	<!-- src here will become the card's front -->
 	<img  id="note" 
         style="border: 1px solid gray;width:90%;margin-left:5%;height:80%" 
         ng-src="{{card}}" 
-        ng-click="flipCard($event)" 
         ng-mousedown="start($event)" 
         ng-mouseup="end($event)" 
         alt="">
-  </img>
+	</img>
 	
 	<div>Tap on the right side of the screen to flip the note.</div>
 	

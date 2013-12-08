@@ -19,8 +19,8 @@ angular.module('snapnote').controller('StudyCtrl',
 		};
 		
 		$scope.flipCard = function(e) {
-			if(e.x > 350) {
-				var img = e.srcElement;
+			if(e.x > (screen.width/2)*.75) {
+				var img = document.getElementById('note');
 				if($scope.flipCount%2==0) //src here will become the card's back
 					$scope.card = SampleDecks.getBack($scope.cardId);
 				else //src here will become the card's front
