@@ -1,5 +1,6 @@
 angular.module('snapnote').controller('DeckListCtrl',
     function ($scope, SampleDecks) {
+		$scope.tutorialCount = 0;
 
 		// Get the deck list view's elements
 		var $view = $('div#deck-list-view'),
@@ -126,7 +127,41 @@ angular.module('snapnote').controller('DeckListCtrl',
 		            }, 1500);
 		        }
 		    }
-		}; // end of $scope.download
+		}; // end of $scope.download		
+		
+		$scope.showTutorial = function() {
+			if(sn.showDeckListTutorial == true) {
+				$('#deckListModal').modal('show');
+			}
+		};
+		
+		$scope.tutorialClose = function() {
+			var checkbox = document.getElementById('deckListTutorialCheck');
+			if(checkbox.checked == true) {
+				sn.showDeckListTutorial = false;
+			}
+			checkbox.checked = false;
+		};
+		
+		$scope.nextDeckListTutorial = function() {
+			var img = document.getElementById('deckListTutorialImg');
+			if($scope.tutorialCount == 0) {
+				img.src = "img/deck-list-tutorial-study.png";
+				$("h4.deckListBodyLabel").text("Tap a deck to begin studying.");
+			}
+			else if($scope.tutorialCount == 1){
+				img.src = "img/deck-list-tutorial-new.png";
+				$("h4.deckListBodyLabel").text("Tap 'New Note' to create a new note.");
+				var nextBtn = document.getElementById('nextDeckListTutorialBtn');
+				nextBtn.innerHTML = 'Done';
+			}
+			else {
+				$('#deckListModal').modal('hide');
+				$scope.tutorialCount = -1;
+				$scope.tutorialClose();
+			}
+			$scope.tutorialCount++;
+		};
 
 	});
 
