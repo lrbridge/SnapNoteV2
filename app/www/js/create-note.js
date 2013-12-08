@@ -14,10 +14,8 @@ angular.module('snapnote')
                 destinationType: sn.phonegap.destinationType.DATA_URL });
         }
 
-        $scope.save = function(deck) {
-            console.log(deck);
-            console.log($scope.photo);
-            SampleDecks.add();
+        $scope.save = function(deckId) {
+            SampleDecks.add(deckId, $scope.photo);
         }
 
     });

@@ -152,8 +152,15 @@ snapnote.factory('SampleDecks', function() {
 			}
 			return sn.decks[_deckId].cards[sn.decks[_deckId].topCard];
 		},
-		add: function() {
-            alert("add");
+		add: function(deckId, photo) {
+			// Pick next value for card id
+			var newCardId = sn.notes.length + 1;
+
+			// Create a new note from card
+			sn.notes[sn.notes.length] = new sn.classes.Note(newCardId,photo);
+
+			// Add new card to supplied deck id
+			this.getDeck({id: deckId}).cards.push(newCardId);
 		}
 	}
 	
