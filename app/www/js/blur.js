@@ -188,11 +188,7 @@ angular.module('snapnote').controller('BlurCtrl',
 		            yStep = 1;
 		        }
 
-		        lineThickness = 15 - Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) / 10;
-		        if (lineThickness < 1) {
-		            lineThickness = 1;
-		        }
-
+		        lineThickness = 15;
 		        for (var x = x1; x < x2; x++) {
 		        	//console.log(y, x, lineThickness);
 		            if (steep) {
