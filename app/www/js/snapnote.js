@@ -20,11 +20,12 @@ var sn = {
 	},
 	
 	classes: {
-		Deck: function(_id,_name, _topCard,_cards) {
+		Deck: function(_id,_name, _topCard,_cards, _created) {
 			this.id=_id;
 			this.name=_name;
 			this.topCard=_topCard;
 			this.cards=_cards;
+			this.created=_created;
 		},
 		Note: function(_id,_front,_back) {
 			this.id=_id;
@@ -40,10 +41,10 @@ var sn = {
 	]
 };
 // initialize data
-sn.decks[sn.decks.length] = new sn.classes.Deck(1,"Dessert Facts",0,[1]);
+sn.decks[sn.decks.length] = new sn.classes.Deck(1,"Dessert Facts",0,[1],true);
 sn.notes[sn.notes.length] = new sn.classes.Note(1,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
 
-sn.decks[sn.decks.length] = new sn.classes.Deck(2,"Sesame Street Chars",0,[2,3,4]);
+sn.decks[sn.decks.length] = new sn.classes.Deck(2,"Sesame Street Chars",0,[2,3,4],false);
 sn.notes[sn.notes.length] = new sn.classes.Note(2,"img/cookiemonster-blurred.png","img/cookiemonster.png");
 sn.notes[sn.notes.length] = new sn.classes.Note(3,"img/elmo-blurred.png","img/elmo.png");
 sn.notes[sn.notes.length] = new sn.classes.Note(4,"img/thecount-blurred.png","img/thecount.png");
