@@ -60,7 +60,7 @@
                         
                         <input ng-model="newDeckName" ng-hide="existing" type="text" class="form-control" id="newDeckInput" placeholder="New Deck Name" required >
                     
-                        <select ng-model="deck" ng-show="existing" ng-options="deck.name for deck in decks | filter: { 'owned': 'true', 'created': 'true', 'deleted' : 'false' }" class="form-control"></select>
+                        <select ng-model="deck" ng-show="existing" ng-options="deck.name for deck in decks | filter: { 'owned': 'true', 'deleted' : 'false' }" class="form-control"></select>
                         
                     </div>
                     

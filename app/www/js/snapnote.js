@@ -134,6 +134,14 @@ snapnote.factory('SampleDecks', function() {
 			alert("couldn't find: "+deckIdObj.id);
 			return null;
 		},
+        getNextLiveDeckId: function() {
+			for(i=0; i<sn.decks.length; i++) {
+				if(sn.decks[i].owned && !sn.decks[i].deleteed) {
+					return sn.decks[i].id;
+				}
+			}
+			return 0;
+		},
 		getCardId: function(deckId) {
 			for(var i=0;i<sn.decks.length;i++) {
 				if(sn.decks[i].id == deckId) {
