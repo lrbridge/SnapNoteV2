@@ -4,6 +4,8 @@ var sn = {
 	showCreateNoteTutorial: false,
 	showDeckListTutorial: false,
 	showStudyTutorial: false,
+    
+    lastAddedToDeckId: 1,
 
     // phonegap 
     phonegap: {
@@ -196,6 +198,9 @@ snapnote.factory('SampleDecks', function() {
 
 			// Add new card to supplied deck id
 			this.getDeck({id: deckId}).cards.push(newCardId);
+            
+            // set lastAddToDeck to this deckId so it comes up by default next time
+            sn.lastAddedToDeckId = deckId;
 		},
 		addDeck: function(deckName) {
 			// Create a new deck with specified name
