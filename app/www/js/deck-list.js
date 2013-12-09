@@ -23,7 +23,7 @@ angular.module('snapnote').controller('DeckListCtrl',
 				// set flag
 				inSearchMode = true;
 				// float deck-list and newnote button downwards
-			    $mainContent.css('top', $view.height());
+			    $mainContent.css('top', 700);
 			    // shrink search box width to show the back button
 			    var newWidth = $searchBox.width() - $searchBackBtn.outerWidth();
 			    $searchBox.css('width', newWidth);

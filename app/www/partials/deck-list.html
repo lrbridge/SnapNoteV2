@@ -1,10 +1,17 @@
 <div id="deck-list-view" ng-init="showTutorial()">
 
-	<!-- Searchbox -->
-    <input id="deck-search" type="search" placeholder="Search online for decks" ng-model="searchText"></input>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-header">
+			<a class="navbar-brand">SnapNote</a>
+		</div>
 
-    <!-- Search back button. Hidden behind searchbox when not in search mode. -->
-    <button id="deck-search-back" class="btn btn-primary">back</button>
+		<!-- Searchbox -->
+	    <input id="deck-search" type="search" placeholder="Search online for decks" ng-model="searchText"></input>
+
+	    <!-- Search back button. Hidden behind searchbox when not in search mode. -->
+	    <button id="deck-search-back" class="btn btn-info">back</button>
+
+	</div>
 
     <!-- Search results list -->
 	<div id="search-results" class="list-group">

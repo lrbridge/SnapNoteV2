@@ -1,61 +1,51 @@
 <div class="study" ng-init="showTutorial()">
 	<div class="navbar navbar-inverse navbar-fixed-top">
-	
-			<div class="navbar-header" style="width: 100%;">
-				<div style="width: 100%;text-align: center;">
-					<a href="#"><button class="btn btn-mini navbar-left btn-info" style="float:left;margin-top: 4px;margin-left:4px;">Home</button></a>
-					<a class="navbar-brand" style="padding-top:10px;">Study: {{deck.name}}</a>
-				</div>
+		<div class="navbar-header" style="width: 100%;">
+			<div style="width: 100%;text-align: center;">
+				<a href="#"><button class="btn btn-mini navbar-left btn-info" style="float:left;margin-top: 4px;margin-left:4px;">Home</button></a>
+				<a class="navbar-brand" style="padding-top:10px;">Study: {{deck.name}}</a>
 			</div>
-
+		</div>
 	</div>
-	<!--<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-		
-        <a class="navbar-brand" style="padding-left: 3em;padding-bottom:0;">Study: {{deck.name}}</a>
-	  </div>
-    </div>
-	<div class="page-header">
-	</div>-->
 	<div class="page-header">
 	</div>
-	<div class="container" >
+    <div class="container" >
 
-		<!-- src here will become the card's front -->
-		<img  id="note" 
-			style="border: 1px solid gray;width:90%;margin-left:5%;height:80%" 
-			ng-src="{{card}}" 
-			ng-click="flipCard($event)"
-			ng-mousedown="start($event)" 
-			ng-mouseup="end($event)" 
-			alt="">
-		</img>
+	<!-- src here will become the card's front -->
+	<img  id="note" 
+        style="border: 1px solid gray;width:90%;margin-left:5%;height:80%" 
+        ng-src="{{card}}" 
+		ng-click="flipCard($event)"
+        ng-mousedown="start($event)" 
+        ng-mouseup="end($event)" 
+        alt="">
+	</img>
 	
-		<div>Tap on the right side of the screen to flip the note.</div>
+	<div>Tap on the right side of the screen to flip the note.</div>
 
-		<!-- Modal dialog for deck options -->
-		<div class="modal fade" id="optionsModal">
-		  <div class="modal-dialog">
-			<div class="modal-content">
-			  <div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">{{ deck.name }} Options</h4>
-			  </div>
-			  <div class="modal-body">
-				<button type="button" class="btn btn-primary" ng-click="addReminder()">Add Reminder</button>
-				<button type="button" class="btn btn-primary" ng-click="deleteDeck()">Delete Deck</button>
-			  </div>
-			</div><!-- /.modal-content -->
-		  </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->	
+    <!-- Modal dialog for deck options -->
+    <div class="modal fade" id="optionsModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">{{ deck.name }} Options</h4>
+          </div>
+          <div class="modal-body">
+            <button type="button" class="btn btn-primary" ng-click="addReminder()">Add Reminder</button>
+            <button type="button" class="btn btn-primary" ng-click="deleteDeck()">Delete Deck</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->	
 	
-		<div class="study-options">
-			<div class="btn-group btn-group-justified">
-				<a class="btn btn-default btn-block" ng-click="previousCard()">Previous Card</a>
-				<a class="btn btn-default btn-block" data-toggle="modal" data-backdrop="false" data-target="#optionsModal">Options</a>
-				<a id="nextNote" class="btn btn-default btn-block" ng-click="nextCard()">Next Card</a>
-			</div>
-		</div>	
+	<div class="study-options">
+	  	<div class="btn-group btn-group-justified">
+			<a class="btn btn-default btn-block" ng-click="previousCard()">Previous Note</a>
+			<a class="btn btn-default btn-block" data-toggle="modal" data-backdrop="false" data-target="#optionsModal">Options</a>
+			<a id="nextNote" class="btn btn-default btn-block" ng-click="nextCard()">Next Note</a>
+		</div>
+	</div>	
 	
 	</div>	
 
