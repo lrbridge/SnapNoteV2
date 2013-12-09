@@ -11,28 +11,32 @@
 /*
  * Styles for the deck-list view
  */
- div#deck-list-view {
+div#deck-list-view {
     z-index: 1;
     width: 100%;          /* Nexus 4 Width: 384px; */
     height: 100%;         /* Nexus 4 Height: 592px; */
     padding: 5px;
 }
+ div#deck-list-view .navbar-brand {
+    padding-left: 8px;
+}
 div#main-content {
     z-index: 2;
     position: relative;
+    top: 50px;
     transition: top 1s;
-    -webkit-transition: top 1s; /* Safari */  
+    -webkit-transition: top 1s;
 }
 div#deck-list {
     width: 100%;
-    height: 482px;
+    margin-bottom: 5px;
 }
 #deck-list-header {
     margin-top: 0px;
     margin-bottom: 5px;
 }
 div#deck-list-content {
-    height: 433px;
+    height: 425px;
     overflow-y: auto;
     background-color: white;
     border: solid #A3A3A3 1px;
@@ -50,13 +54,17 @@ div#deck-list-content h3#downloaded {
 }
 input#deck-search {
     z-index: 2;
-    position: relative;
-    width: 100%; 
+    position: fixed;
+    left: 100px;
+    top: 5px;
+    width: 315px;
     height: 40px;
+    padding-left: 5px;
+    padding-top: 5px;
     margin-bottom: 5px;
     font-size: 18px;
     transition: width 0.5s;
-    -webkit-transition: width 0.5s; /* Safari */ 
+    -webkit-transition: width 0.5s;
 }
 button#new-note {
     position: relative;
@@ -68,6 +76,7 @@ button#deck-search-back {
 }
 #search-results {
     position: relative;
+    top: 55px;
     width: 100%;
     height: 482px;
     padding: 5px;
