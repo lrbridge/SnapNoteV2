@@ -1,6 +1,5 @@
 angular.module('snapnote')
     .controller('CreateNoteCtrl', function($scope, $rootScope, $routeParams, SampleDecks) {
-
         $scope.decks = SampleDecks.getMyDecks();
         $scope.deck = SampleDecks.getDeck({
             id: 1
@@ -28,7 +27,7 @@ angular.module('snapnote')
             }
             
             SampleDecks.addCard(deckId, $scope.photo, $scope.photo); // TODO need to figure out how to save blurred img    
-        }
+        };
 
         $scope.clickUndo = function() {
         	if (undoables.length == 0)
@@ -49,7 +48,7 @@ angular.module('snapnote')
         			ctx.fillRect(clearX, clearY, clearHeight, clearWidth);
         		}
         	}
-        }
+        };
 
         $scope.clickRedo = function() {
         	if (redoables.length == 0)
@@ -67,7 +66,7 @@ angular.module('snapnote')
         		ctx.fillRect(fillX, fillY, fillHeight, fillWidth);
         	}
         	undoables.push(stroke);
-        }
+        };
         
         // All blurring logic below here
         
@@ -108,7 +107,7 @@ angular.module('snapnote')
                 lastTouchX.push(touches[i].pageX - this.offsetParent.offsetLeft);
                 lastTouchY.push(touches[i].pageY - this.offsetParent.offsetTop);
             }
-        }
+        };
 
         var handleMove = function(evt) {
             evt.preventDefault();
@@ -131,7 +130,7 @@ angular.module('snapnote')
                     log("can't figure out which touch to continue");
                 }
             }
-        }
+        };
 
         var handleEnd = function(evt) {
             evt.preventDefault();
@@ -149,7 +148,7 @@ angular.module('snapnote')
                     log("can't figure out which touch to end");
                 }
             }
-        }
+        };
 
             function ongoingTouchIndexById(idToFind) {
                 for (var i = 0; i < ongoingTouches.length; i++) {
@@ -160,15 +159,15 @@ angular.module('snapnote')
                     }
                 }
                 return -1; // not found
-            }
+            };
 
             function log(msg) {
                 console.log(msg);
-            }
+            };
 
             function colorForTouch(touch) {
                 return "#000000";
-            }
+            };
 
             function copyTouch(touch) {
                 return {
@@ -176,7 +175,7 @@ angular.module('snapnote')
                     pageX: touch.pageX,
                     pageY: touch.pageY
                 };
-            }
+            };
 
         var blurStart = function(e) {
             e.preventDefault();
@@ -192,7 +191,7 @@ angular.module('snapnote')
         var blurEnd = function(e) {
             e.preventDefault();
             blurring = false;
-        }
+        };
 
         var blurMove = function(e) {
             e.preventDefault();
@@ -201,7 +200,7 @@ angular.module('snapnote')
                 lastX = e.offsetX;
                 lastY = e.offsetY;
             }
-        }
+        };
 
         var drawBlur = function(mouseX, mouseY, lastX, lastY) {
             // find all points between        
@@ -263,12 +262,12 @@ angular.module('snapnote')
                     error -= 1.0;
                 }
             }
-        }
+        };
 
         blur.onmousedown = blurStart;
         blur.onmouseup = blurEnd;
         blur.onmousemove = blurMove;
         blur.ontouchstart = handleStart;
         blur.ontouchend = handleEnd;
-        blur.ontouchmove = handleMove;
+        blur.ontouchmove = handleMove;	
     });
