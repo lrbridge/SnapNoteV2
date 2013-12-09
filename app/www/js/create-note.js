@@ -2,8 +2,9 @@ angular.module('snapnote')
     .controller('CreateNoteCtrl', function($scope, $rootScope, $routeParams, SampleDecks) {
         $scope.decks = SampleDecks.getMyDecks();
         $scope.deck = SampleDecks.getDeck({
-            id: 1
+            id: sn.lastAddedToDeckId
         });
+
         $scope.cardId = SampleDecks.getCardId($scope.deck.id);
         $scope.card = SampleDecks.getFront($scope.cardId);
         $scope.height = "300px";
@@ -17,6 +18,11 @@ angular.module('snapnote')
             {"value": "false", "label": "Create New Deck"}
         ];
         $scope.existing = "true";
+        
+        // not valid if new deck & input field empty
+        $scope.isNotValid = function(inputFull) {
+            return ($scope.existing == "false") && !inputFull; 
+        }
         
         $scope.createCard = function() {
             

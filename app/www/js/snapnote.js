@@ -4,6 +4,8 @@ var sn = {
 	showCreateNoteTutorial: false,
 	showDeckListTutorial: false,
 	showStudyTutorial: false,
+    
+    lastAddedToDeckId: 1,
 
     // phonegap 
     phonegap: {
@@ -108,10 +110,10 @@ snapnote.config(function($routeProvider) {
 		templateUrl: 'partials/choose-image.html', 
 		controller: 'ChooseImageCtrl'
 	})
-	.when("/blur",
+	.when("/camera",
 	{
-		templateUrl: 'partials/blur.html',
-		controller: 'BlurCtrl'
+		templateUrl: 'partials/camera.html',
+		controller: 'CameraCtrl'
 	});
     
 });
@@ -131,6 +133,14 @@ snapnote.factory('SampleDecks', function() {
 			}
 			alert("couldn't find: "+deckIdObj.id);
 			return null;
+		},
+        getNextLiveDeckId: function() {
+			for(i=0; i<sn.decks.length; i++) {
+				if(sn.decks[i].owned && !sn.decks[i].deleteed) {
+					return sn.decks[i].id;
+				}
+			}
+			return 0;
 		},
 		getCardId: function(deckId) {
 			for(var i=0;i<sn.decks.length;i++) {
@@ -196,6 +206,9 @@ snapnote.factory('SampleDecks', function() {
 
 			// Add new card to supplied deck id
 			this.getDeck({id: deckId}).cards.push(newCardId);
+            
+            // set lastAddToDeck to this deckId so it comes up by default next time
+            sn.lastAddedToDeckId = deckId;
 		},
 		addDeck: function(deckName) {
 			// Create a new deck with specified name
