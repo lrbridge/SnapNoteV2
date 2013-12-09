@@ -18,6 +18,11 @@ angular.module('snapnote')
         ];
         $scope.existing = "true";
         
+        // not valid if new deck & input field empty
+        $scope.isNotValid = function(inputFull) {
+            return ($scope.existing == "false") && !inputFull; 
+        }
+        
         $scope.createCard = function() {
             
             var deckId = $scope.deck.id;

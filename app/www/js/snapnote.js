@@ -108,10 +108,10 @@ snapnote.config(function($routeProvider) {
 		templateUrl: 'partials/choose-image.html', 
 		controller: 'ChooseImageCtrl'
 	})
-	.when("/blur",
+	.when("/camera",
 	{
-		templateUrl: 'partials/blur.html',
-		controller: 'BlurCtrl'
+		templateUrl: 'partials/camera.html',
+		controller: 'CameraCtrl'
 	});
     
 });
