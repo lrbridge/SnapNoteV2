@@ -4,6 +4,8 @@ var sn = {
 	showCreateNoteTutorial: false,
 	showDeckListTutorial: false,
 	showStudyTutorial: false,
+    
+    lastAddedToDeckId: 1,
 
     // phonegap 
     phonegap: {
@@ -46,43 +48,43 @@ var sn = {
 	]
 };
 
+// Create deck: Addition
+sn.decks[sn.decks.length] = new sn.classes.Deck(1,"Addition",0,[1,2,3,4],false,false,true);
+sn.notes[sn.notes.length] = new sn.classes.Note(1,"img/decks/addition/notecard-1-blur.png","img/decks/addition/notecard-1.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(2,"img/decks/addition/notecard-2-blur.png","img/decks/addition/notecard-2.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(3,"img/decks/addition/notecard-3-blur.png","img/decks/addition/notecard-3.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(4,"img/decks/addition/notecard-4-blur.png","img/decks/addition/notecard-4.png");
+
+// Create deck: Subtraction
+sn.decks[sn.decks.length] = new sn.classes.Deck(2,"Subtraction",0,[5,6,7,8],false,false,false);
+sn.notes[sn.notes.length] = new sn.classes.Note(5,"img/decks/subtraction/notecard-1-blur.png","img/decks/subtraction/notecard-1.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(6,"img/decks/subtraction/notecard-2-blur.png","img/decks/subtraction/notecard-2.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(7,"img/decks/subtraction/notecard-3-blur.png","img/decks/subtraction/notecard-3.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(8,"img/decks/subtraction/notecard-4-blur.png","img/decks/subtraction/notecard-4.png");
+
+// Create deck: Chemistry
+sn.decks[sn.decks.length] = new sn.classes.Deck(3,"Chemistry",0,[9,10,11,12],false,false,false);
+sn.notes[sn.notes.length] = new sn.classes.Note(9,"img/decks/chemistry/notecard-1-blur.png","img/decks/chemistry/notecard-1.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(10,"img/decks/chemistry/notecard-2-blur.png","img/decks/chemistry/notecard-2.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(11,"img/decks/chemistry/notecard-3-blur.png","img/decks/chemistry/notecard-3.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(12,"img/decks/chemistry/notecard-4-blur.png","img/decks/chemistry/notecard-4.png");
+
+// Create deck: Geography
+sn.decks[sn.decks.length] = new sn.classes.Deck(4,"Geography",0,[13,14,15,16],false,false,false);
+sn.notes[sn.notes.length] = new sn.classes.Note(13,"img/decks/geography/notecard-1-blur.png","img/decks/geography/notecard-1.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(14,"img/decks/geography/notecard-2-blur.png","img/decks/geography/notecard-2.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(15,"img/decks/geography/notecard-3-blur.png","img/decks/geography/notecard-3.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(16,"img/decks/geography/notecard-4-blur.png","img/decks/geography/notecard-4.png");
+
 // Create deck: My Dessert Facts
-sn.decks[sn.decks.length] = new sn.classes.Deck(1,"My Dessert Facts",0,[1],true,false,true);
-sn.notes[sn.notes.length] = new sn.classes.Note(1,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
-
-// Create deck: Dessert Facts II
-sn.decks[sn.decks.length] = new sn.classes.Deck(2,"Dessert Facts II",0,[2],false,false,false);
-sn.notes[sn.notes.length] = new sn.classes.Note(2,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
-
-// Create deck: Dessert Facts III
-sn.decks[sn.decks.length] = new sn.classes.Deck(3,"Dessert Facts III",0,[3],false,false,false);
-sn.notes[sn.notes.length] = new sn.classes.Note(3,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
-
-// Create deck: Dessert Facts IV
-sn.decks[sn.decks.length] = new sn.classes.Deck(4,"Dessert Facts IV",0,[4],false,false,false);
-sn.notes[sn.notes.length] = new sn.classes.Note(4,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
-
-// Create deck: Dessert Facts V
-sn.decks[sn.decks.length] = new sn.classes.Deck(5,"Dessert Facts V",0,[5],false,false,false);
-sn.notes[sn.notes.length] = new sn.classes.Note(5,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.JPG");
+sn.decks[sn.decks.length] = new sn.classes.Deck(5,"My Dessert Facts",0,[17],true,false,true);
+sn.notes[sn.notes.length] = new sn.classes.Note(17,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.jpg");
 
 // Create deck: Sesame Street
-sn.decks[sn.decks.length] = new sn.classes.Deck(6,"Sesame Street",0,[6,7,8],false,false,true);
-sn.notes[sn.notes.length] = new sn.classes.Note(6,"img/cookiemonster-blurred.png","img/cookiemonster.png");
-sn.notes[sn.notes.length] = new sn.classes.Note(7,"img/elmo-blurred.png","img/elmo.png");
-sn.notes[sn.notes.length] = new sn.classes.Note(8,"img/thecount-blurred.png","img/thecount.png");
-
-// Create deck: Sesame Street II
-sn.decks[sn.decks.length] = new sn.classes.Deck(7,"Sesame Street II",0,[9,10,11],false,false,false);
-sn.notes[sn.notes.length] = new sn.classes.Note(9,"img/cookiemonster-blurred.png","img/cookiemonster.png");
-sn.notes[sn.notes.length] = new sn.classes.Note(10,"img/elmo-blurred.png","img/elmo.png");
-sn.notes[sn.notes.length] = new sn.classes.Note(11,"img/thecount-blurred.png","img/thecount.png");
-
-// Create deck: Sesame Street III
-sn.decks[sn.decks.length] = new sn.classes.Deck(8,"Sesame Street III",0,[12,13,14],false,false,false);
-sn.notes[sn.notes.length] = new sn.classes.Note(12,"img/cookiemonster-blurred.png","img/cookiemonster.png");
-sn.notes[sn.notes.length] = new sn.classes.Note(13,"img/elmo-blurred.png","img/elmo.png");
-sn.notes[sn.notes.length] = new sn.classes.Note(14,"img/thecount-blurred.png","img/thecount.png");
+sn.decks[sn.decks.length] = new sn.classes.Deck(6,"Sesame Street",0,[18,19,20],false,false,true);
+sn.notes[sn.notes.length] = new sn.classes.Note(18,"img/cookiemonster-blurred.png","img/cookiemonster.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(19,"img/elmo-blurred.png","img/elmo.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(20,"img/thecount-blurred.png","img/thecount.png");
 
 // global angular snapnote module object
 var snapnote = angular.module("snapnote", ["ngRoute"]);
@@ -108,10 +110,10 @@ snapnote.config(function($routeProvider) {
 		templateUrl: 'partials/choose-image.html', 
 		controller: 'ChooseImageCtrl'
 	})
-	.when("/blur",
+	.when("/camera",
 	{
-		templateUrl: 'partials/blur.html',
-		controller: 'BlurCtrl'
+		templateUrl: 'partials/camera.html',
+		controller: 'CameraCtrl'
 	});
     
 });
@@ -131,6 +133,14 @@ snapnote.factory('SampleDecks', function() {
 			}
 			alert("couldn't find: "+deckIdObj.id);
 			return null;
+		},
+        getNextLiveDeckId: function() {
+			for(i=0; i<sn.decks.length; i++) {
+				if(sn.decks[i].owned && !sn.decks[i].deleteed) {
+					return sn.decks[i].id;
+				}
+			}
+			return 0;
 		},
 		getCardId: function(deckId) {
 			for(var i=0;i<sn.decks.length;i++) {
@@ -196,6 +206,9 @@ snapnote.factory('SampleDecks', function() {
 
 			// Add new card to supplied deck id
 			this.getDeck({id: deckId}).cards.push(newCardId);
+            
+            // set lastAddToDeck to this deckId so it comes up by default next time
+            sn.lastAddedToDeckId = deckId;
 		},
 		addDeck: function(deckName) {
 			// Create a new deck with specified name
