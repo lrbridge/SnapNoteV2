@@ -1,5 +1,5 @@
 <div class="study" ng-init="showTutorial()">
-	<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar navbar-inverse navbar-fixed-top" style="float:none;">
 		<div class="navbar-header" style="width: 100%;">
 			<div style="width: 100%;text-align: center;">
 				<a href="#"><button class="btn btn-mini navbar-left btn-info" style="float:left;margin-top: 4px;margin-left:4px;">Home</button></a>
@@ -10,18 +10,18 @@
 	<div class="page-header">
 	</div>
     <div class="container" >
-
+	
+	
+	<div>Tap on the right side of the screen to flip the note.</div>
 	<!-- src here will become the card's front -->
 	<img  id="note" 
-        style="border: 1px solid gray;width:90%;margin-left:5%;height:80%" 
+        style="border: 1px solid gray;max-width: 340px;max-height:440px;display:block;margin:0 auto;" 
         ng-src="{{card}}" 
 		ng-click="flipCard($event)"
         ng-mousedown="start($event)" 
         ng-mouseup="end($event)" 
         alt="">
 	</img>
-	
-	<div>Tap on the right side of the screen to flip the note.</div>
 
     <!-- Modal dialog for deck options -->
     <div class="modal fade" id="optionsModal">
@@ -38,12 +38,11 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->	
-	
-	<div class="study-options">
+	<div class="navbar navbar-fixed-bottom study-options">
 	  	<div class="btn-group btn-group-justified">
-			<a class="btn btn-default btn-block" ng-click="previousCard()">Previous Note</a>
-			<a class="btn btn-default btn-block" data-toggle="modal" data-backdrop="false" data-target="#optionsModal">Options</a>
-			<a id="nextNote" class="btn btn-default btn-block" ng-click="nextCard()">Next Note</a>
+			<a class="btn btn-default btn-primary" ng-click="previousCard()">Previous Note</a>
+			<a class="btn btn-default btn-primary" data-toggle="modal" data-backdrop="false" data-target="#optionsModal">Options</a>
+			<a id="nextNote" class="btn btn-default btn-primary" ng-click="nextCard()">Next Note</a>
 		</div>
 	</div>	
 	
