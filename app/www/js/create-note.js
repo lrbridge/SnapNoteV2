@@ -2,8 +2,9 @@ angular.module('snapnote')
     .controller('CreateNoteCtrl', function($scope, $rootScope, $routeParams, SampleDecks) {
         $scope.decks = SampleDecks.getMyDecks();
         $scope.deck = SampleDecks.getDeck({
-            id: 1
+            id: sn.lastAddedToDeckId
         });
+
         $scope.cardId = SampleDecks.getCardId($scope.deck.id);
         $scope.card = SampleDecks.getFront($scope.cardId);
         $scope.height = "300px";
