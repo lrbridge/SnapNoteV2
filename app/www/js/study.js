@@ -62,6 +62,7 @@ angular.module('snapnote').controller('StudyCtrl',
 			var confirmation = confirm("Are you sure you want to delete this deck?");
 			if( confirmation ) {
 				$scope.deck.deleted = true;
+                sn.lastAddedToDeckId = SampleDecks.getNextLiveDeckId();
 				location.href = "#";
 			}
 		};
