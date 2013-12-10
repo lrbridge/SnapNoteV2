@@ -4,12 +4,9 @@ angular.module('snapnote').controller('ChooseImageCtrl',
 		
 		// The user's photo library
 		$scope.photos = [
-            "img/demoslides/book1.png",
-            "img/demoslides/book2.png",
             "img/demoslides/whiteboard1.png",
             "img/demoslides/whiteboard2.png",
-            "img/demoslides/screen1.png",
-            "img/demoslides/screen2.png"
+            "img/demoslides/screen1.png"
         ];
 		
 		$scope.showTutorial = function() {

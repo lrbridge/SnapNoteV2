@@ -70,21 +70,28 @@ sn.notes[sn.notes.length] = new sn.classes.Note(11,"img/decks/chemistry/notecard
 sn.notes[sn.notes.length] = new sn.classes.Note(12,"img/decks/chemistry/notecard-4-blur.png","img/decks/chemistry/notecard-4.png");
 
 // Create deck: Geography
-sn.decks[sn.decks.length] = new sn.classes.Deck(4,"Geography",0,[13,14,15,16],false,false,false);
+sn.decks[sn.decks.length] = new sn.classes.Deck(4,"Geography",0,[13,14,15,16],false,false,true);
 sn.notes[sn.notes.length] = new sn.classes.Note(13,"img/decks/geography/notecard-1-blur.png","img/decks/geography/notecard-1.png");
 sn.notes[sn.notes.length] = new sn.classes.Note(14,"img/decks/geography/notecard-2-blur.png","img/decks/geography/notecard-2.png");
 sn.notes[sn.notes.length] = new sn.classes.Note(15,"img/decks/geography/notecard-3-blur.png","img/decks/geography/notecard-3.png");
 sn.notes[sn.notes.length] = new sn.classes.Note(16,"img/decks/geography/notecard-4-blur.png","img/decks/geography/notecard-4.png");
 
 // Create deck: My Dessert Facts
-sn.decks[sn.decks.length] = new sn.classes.Deck(5,"My Dessert Facts",0,[17],true,false,true);
+sn.decks[sn.decks.length] = new sn.classes.Deck(5,"My Dessert Facts",0,[17],false,false,false);
 sn.notes[sn.notes.length] = new sn.classes.Note(17,"img/wrong-slide2-blurred.jpg","img/wrong-slide2.jpg");
 
 // Create deck: Sesame Street
-sn.decks[sn.decks.length] = new sn.classes.Deck(6,"Sesame Street",0,[18,19,20],false,false,true);
+sn.decks[sn.decks.length] = new sn.classes.Deck(6,"Sesame Street",0,[18,19,20],false,false,false);
 sn.notes[sn.notes.length] = new sn.classes.Note(18,"img/cookiemonster-blurred.png","img/cookiemonster.png");
 sn.notes[sn.notes.length] = new sn.classes.Note(19,"img/elmo-blurred.png","img/elmo.png");
 sn.notes[sn.notes.length] = new sn.classes.Note(20,"img/thecount-blurred.png","img/thecount.png");
+
+// Create deck: UI Design
+sn.decks[sn.decks.length] = new sn.classes.Deck(7,"UI Design",0,[21,22,23,24],true,false,true);
+sn.notes[sn.notes.length] = new sn.classes.Note(21,"img/decks/uidesign/slide1-blurred.png","img/decks/uidesign/slide1.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(22,"img/decks/uidesign/slide2-blurred.png","img/decks/uidesign/slide2.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(23,"img/decks/uidesign/slide3-blurred.png","img/decks/uidesign/slide3.png");
+sn.notes[sn.notes.length] = new sn.classes.Note(24,"img/decks/uidesign/slide4-blurred.png","img/decks/uidesign/slide4.png");
 
 // global angular snapnote module object
 var snapnote = angular.module("snapnote", ["ngRoute"]);
