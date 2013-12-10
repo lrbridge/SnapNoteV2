@@ -1,19 +1,20 @@
 <div id="deck-list-view" ng-init="showTutorial()">
 
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="navbar-header">
-			<a class="navbar-brand">SnapNote</a>
-		</div>
+	<!-- Navbar with searchbox and back button -->
+	<div class="navbar navbar-default navbar-fixed-top">
+		<!-- App Title -->
+		<a class="navbar-brand">SnapNote</a>
 
-		<!-- Searchbox -->
-	    <input id="deck-search" type="search" placeholder="Search online for decks" ng-model="searchText"></input>
+		<!-- Search Box -->
+		<span class="search-container">
+    		<input class="search" type="search" placeholder="Search online for decks" ng-model="searchText"></input>
+		</span>
 
-	    <!-- Search back button. Hidden behind searchbox when not in search mode. -->
-	    <button id="deck-search-back" class="btn btn-info">back</button>
-
+    	<!-- Search Back Button -->
+    	<button id="search-back-btn" class="btn btn-info">back</button>
 	</div>
 
-    <!-- Search results list -->
+    <!-- Search Results -->
 	<div id="search-results" class="list-group">
 		<div ng-repeat="deck in decks | nonBlankFilter:searchText">
 			<div ng-show="!deck.owned" class="list-group-item download" ng-click="download(deck)">
@@ -29,26 +30,22 @@
 
     <!-- Content shown when not searching for decks -->
     <div id="main-content">
-		<!-- List of decks owned by user -->
-	    <div id="deck-list">
-		    <h1 id="deck-list-header">My Decks</h1>
-		    <div id="deck-list-content">
-				<div class="list-group">
-					<!-- Decks created by user -->
-					<h3 id="created">Created</h3>
-					<div ng-repeat="deck in decks  | filter: { 'owned': 'true', 'created': 'true', 'deleted' : 'false' } | orderBy:'name'">
-						<a href="#/{{ deck.id }}/study" class="list-group-item">
-							<h4 class="list-group-item-heading">{{ deck.name }}</h4>
-						</a>
-					</div>
-					<!-- Decks downloaded by user -->
-					<h3 id="downloaded">Downloaded</h3>
-					<div ng-repeat="deck in decks  | filter: { 'owned': 'true', 'created': 'false', 'deleted' : 'false' } | orderBy:'name'">
-						<a href="#/{{ deck.id }}/study" class="list-group-item">
-							<h4 class="list-group-item-heading">{{ deck.name }}</h4>
-						</a>
-					</div>
-				</div>
+		<h1>My Decks</h1>
+		<!-- List of Notecard Decks Owned by User -->
+	    <div id="deck-list" class="list-group">
+			<!-- Decks created by user -->
+			<h3 id="created">Created</h3>
+			<div ng-repeat="deck in decks  | filter: { 'owned': 'true', 'created': 'true', 'deleted' : 'false' } | orderBy:'name'">
+				<a href="#/{{ deck.id }}/study" class="list-group-item">
+					<h4 class="list-group-item-heading">{{ deck.name }}</h4>
+				</a>
+			</div>
+			<!-- Decks downloaded by user -->
+			<h3 id="downloaded">Downloaded</h3>
+			<div ng-repeat="deck in decks  | filter: { 'owned': 'true', 'created': 'false', 'deleted' : 'false' } | orderBy:'name'">
+				<a href="#/{{ deck.id }}/study" class="list-group-item">
+					<h4 class="list-group-item-heading">{{ deck.name }}</h4>
+				</a>
 			</div>
 		</div>
 
