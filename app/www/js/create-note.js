@@ -32,7 +32,9 @@ angular.module('snapnote')
                 deckId = SampleDecks.addDeck($scope.newDeckName);  
             }
             
-            SampleDecks.addCard(deckId, $scope.photo, $scope.photo); // TODO need to figure out how to save blurred img    
+            var back = $scope.photo;
+            var front = back.replace(".png","-blurred.png");
+            SampleDecks.addCard(deckId, front, back);   
         };
 
         $scope.clickUndo = function() {
