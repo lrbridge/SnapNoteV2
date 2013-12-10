@@ -1,98 +1,85 @@
 <div class="newNotecard">
-    <div class="navbar navbar-default navbar-fixed-top" style="float:none;">
-		<div class="navbar-header" style="width: 100%;">
-			<div style="width: 100%;text-align: center;">
-				<a href="#"><button class="navbar-default btn btn-mini navbar-left btn-info" style="float:left;margin-top:4px;margin-bottom:4px;margin-left:4px;border-style:none;">Cancel</button></a>
-				<a class="navbar-brand" style="float:center;padding-top:10px;">New Note</a>
-				<a class="dropdown" data-toggle="dropdown"><button class="navbar-default btn dropdown-toggle btn-mini navbar-right btn-info" style="float:right;margin-top: 4px;margin-bottom:4px;margin-right:4px;border-style:none;">Options<span class="caret"></span></button></a>
-				<ul class="dropdown-menu">
-					<li><a ng-click="clickUndo()">Undo</a></li>
-					<li><a ng-click="clickRedo()">Redo</a></li>
-				</ul>
-			</div>
-		</div>
-    </div>
 
-    
-    <div class="container" style="height:{{height}}; width:{{width}}; margin-left: auto; margin-right: auto; padding-left: 0; padding-right: 0">
-        <div id="blurHTML" style="height:{{height}}; width:{{width}}; margin-left: auto; margin-right: auto;">
-            <div id="slide" style="height:{{height}}; width:{{width}}; margin-left: auto; margin-right: auto;">
-                <img ng-src="{{photo}}" style="position:absolute; height:{{height}}; width:{{width}};" />
-                <div id="hider" style="position:absolute; height:{{height}}; width:{{width}};">
-                    <canvas id="blur" height={{height}} width={{width}} style="position:absolute; height:{{height}}; width:{{width}};">
-                    </canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-
-	</div>
-
-    <!-- Choose Deck Modal -->
-    <div class="modal fade" id="chooseDeckModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Save to Deck</h4>
-          </div>
-          <div class="modal-body">
-
-          <form name="myForm" novalidate class="form-horizontal">
-                <fieldset>
-                  <div class="form-group">
-                      
-                        <div class="radio" ng-repeat="item in options">
-                            <label>
-                                <input type="radio" name="radioGroup" ng-model="$parent.existing" value="{{item.value}}">
-                                {{item.label}}
-                            </label>
-                        </div>
-                        
-                        <br>
-                        
-                        <input ng-model="newDeckName" ng-hide="existing" type="text" class="form-control" id="newDeckInput" placeholder="New Deck Name" required >
-                    
-                        <select ng-model="deck" ng-show="existing" ng-options="deck.name for deck in decks | filter: { 'owned': 'true', 'deleted' : 'false' }" class="form-control"></select>
-                        
-                    </div>
-                    
-                </fieldset>
-              </form>
- 
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button ng-disabled="isNotValid(myForm.$valid)" type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#confirmationModal" data-backdrop="false" ng-click="createCard()">Confirm</button>
-          </div>
-        </div>
+  <div class="navbar navbar-default navbar-fixed-top" style="float:none;">
+    <div class="navbar-header" style="width: 100%;">
+      <div style="width: 100%;text-align: center;">
+        <a href="#"><button class="navbar-default btn btn-mini navbar-left btn-info" style="float:left;margin-top:4px;margin-bottom:4px;margin-left:4px;border-style:none;">Cancel</button></a>
+        <a class="navbar-brand" style="float:center; display: inline-block;">New Note</a>
+        <a class="dropdown" data-toggle="dropdown"><button class="navbar-default btn dropdown-toggle btn-mini navbar-right btn-info" style="float:right;margin-top: 4px;margin-bottom:4px;margin-right:4px;border-style:none;">Options<span class="caret"></span></button></a>
+        <ul class="dropdown-menu">
+          <li><a ng-click="clickUndo()">Undo</a></li>
+          <li><a ng-click="clickRedo()">Redo</a></li>
+        </ul>
       </div>
-    </div>
-
-    <!-- Confirmation Modal -->
-    <div class="modal fade" id="confirmationModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Success</h4>
-          </div>
-          <div class="modal-body">
-            Note added.  Do you want to add another to this deck?
-          </div>
-          <div class="modal-footer">
-              <a type="button" href="#" class="btn btn-default">No</a>
-              <a type="button" href="#/chooseImage" class="btn btn-primary" data-target="#newNoteModal">Yes</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-	<div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-	  	<div class="btn-group btn-group-justified">
-            <a class="navbar-default btn btn-default btn-primary" data-toggle="modal" data-backdrop="false" data-target="#chooseDeckModal">Save</a>
-		  </div>
     </div>
   </div>
-    
+
+  <div class="container" style="height:{{height}}; width:{{width}}; margin: 70px auto 0 auto; padding: 0">
+    <div id="blurHTML" style="height:{{height}}; width:{{width}}; margin-left: auto; margin-right: auto;">
+      <div id="slide" style="height:{{height}}; width:{{width}}; margin-left: auto; margin-right: auto;">
+        <img ng-src="{{photo}}" style="position:absolute; height:{{height}}; width:{{width}};" />
+        <div id="hider" style="position:absolute; height:{{height}}; width:{{width}};">
+          <canvas id="blur" height={{height}} width={{width}} style="position:absolute; height:{{height}}; width:{{width}};">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Choose Deck Modal -->
+<div class="modal fade" id="chooseDeckModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Save to Deck</h4>
+      </div>
+      <div class="modal-body">
+        <form name="myForm" novalidate class="form-horizontal">
+          <fieldset>
+            <div class="form-group">
+              <div class="radio" ng-repeat="item in options">
+                <label>
+                <input type="radio" name="radioGroup" ng-model="$parent.existing" value="{{item.value}}">
+                {{item.label}}
+                </label>
+              </div>
+              <br>
+              <input ng-model="newDeckName" ng-hide="existing" type="text" class="form-control" id="newDeckInput" placeholder="New Deck Name" required >
+              <select ng-model="deck" ng-show="existing" ng-options="deck.name for deck in decks | filter: { 'owned': 'true', 'deleted' : 'false' }" class="form-control"></select>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button ng-disabled="isNotValid(myForm.$valid)" type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#confirmationModal" data-backdrop="false" ng-click="createCard()">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div class="modal fade" id="confirmationModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Success</h4>
+      </div>
+      <div class="modal-body">
+        Note added.  Do you want to add another to this deck?
+      </div>
+      <div class="modal-footer">
+        <a type="button" href="#" class="btn btn-default">No</a>
+        <a type="button" href="#/chooseImage" class="btn btn-primary" data-target="#newNoteModal">Yes</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="navbar navbar-default navbar-fixed-bottom" style="padding: 5px; background: transparent;" role="navigation">
+  <a class="btn btn-lg btn-primary btn-block" data-toggle="modal" data-backdrop="false" data-target="#chooseDeckModal">Save</a>
 </div>
