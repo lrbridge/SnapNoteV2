@@ -4,6 +4,7 @@
 			<div style="width: 100%;text-align: center;">
 				<a href="#"><button class="btn btn-mini navbar-left btn-info" style="float:left;margin-top: 4px;margin-left:4px;">Home</button></a>
 				<a class="navbar-brand" style="padding-top:10px;">Study: {{deck.name}}</a>
+				<a><button class="btn btn-mini navbar-right btn-info" style="float:left;margin-top: 4px;margin-right:4px;" ng-click="showOptions()">Options</button></a>
 			</div>
 		</div>
 	</div>
@@ -11,15 +12,11 @@
 	</div>
     <div class="container" >
 	
-	
-	<div>Tap on the right side of the screen to flip the note.</div>
 	<!-- src here will become the card's front -->
 	<img  id="note" 
         style="border: 1px solid gray;max-width: 340px;max-height:440px;display:block;margin:0 auto;" 
         ng-src="{{card}}" 
 		ng-click="flipCard($event)"
-        ng-mousedown="start($event)" 
-        ng-mouseup="end($event)" 
         alt="">
 	</img>
 
@@ -38,10 +35,10 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->	
+	
 	<div class="navbar navbar-fixed-bottom study-options">
 	  	<div class="btn-group btn-group-justified">
 			<a class="btn btn-default btn-primary" ng-click="previousCard()">Previous Note</a>
-			<a class="btn btn-default btn-primary" data-toggle="modal" data-backdrop="false" data-target="#optionsModal">Options</a>
 			<a id="nextNote" class="btn btn-default btn-primary" ng-click="nextCard()">Next Note</a>
 		</div>
 	</div>	
@@ -57,7 +54,7 @@
             <h4 class="modal-title" id="studyModalLabel">Study Tutorial</h4>
           </div>
 		  <div class="modal-body">
-			<h4 class="studyBodyLabel">Tap the right side of the screen to reveal any blurred sections.</h4>
+			<h4 class="studyBodyLabel">Tap anywhere on the image to reveal the blurred section(s).</h4>
 			<img  id="studyTutorialImg" 
 				style="border: 1px solid gray;width:90%;margin-left:5%;height:80%" 
 				ng-src="img/study-tutorial-tap.png" 
