@@ -1,23 +1,12 @@
 <div class="newNotecard">
-    <div class="navbar navbar-inverse navbar-fixed-top" style="float: none" role="navigation">
-        <ul class="nav navbar-nav">
-            <li>
-                <a href="#">
-                    <img src="img/icons/back.svg" style="width: 30px;" />
-
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="img/icons/undo.svg" style="width: 30px;" ng-click="clickUndo()" />
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="img/icons/redo.svg" style="width: 30px;" ng-click="clickRedo()" />
-                </a>
-            </li>
-        </ul>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="float:none;">
+		<div class="navbar-header" style="width: 100%;">
+			<div style="width: 100%;text-align: center;">
+				<a href="#"><button class="btn btn-mini navbar-left btn-info" style="float:left;margin-top: 4px;margin-left:4px;">Cancel</button></a>
+				<a class="navbar-brand" style="float:center;padding-top:20px;">New Note</a>
+				<a><button class="btn btn-mini navbar-right btn-info" style="float:right;margin-top: 4px;margin-right:4px;">Options</button></a>
+			</div>
+		</div>
     </div>
 
     
@@ -97,8 +86,7 @@
 
 	<div class="navbar navbar-fixed-bottom" role="navigation">
 	  	<div class="btn-group btn-group-justified">
-	    	<a type="button" href="#" class="btn btn-default btn-lg">Cancel</a>
-            <a class="btn btn-default btn-lg" data-toggle="modal" data-backdrop="false" data-target="#chooseDeckModal">Save</a>
+            <a class="btn btn-default btn-primary" data-toggle="modal" data-backdrop="false" data-target="#chooseDeckModal">Save</a>
 		  </div>
     </div>
   </div>
