@@ -1,48 +1,55 @@
 <div ng-init="showTutorial()" >
-	<div class="navbar navbar-default navbar-fixed-top">
-		<div class="navbar-header" style="width: 100%;">
+
+	<div class="navbar navbar-default navbar-fixed-top" style="float:none;">
+    	<div class="navbar-header" style="width: 100%;">
 			<div style="width: 100%;text-align: center;">
-				<a href="#"><button class="navbar-default btn btn-mini navbar-left btn-info" style="float:left;margin-top:4px;margin-bottom:4px;margin-left:4px;border-style:none;">Cancel</button></a>
-				<a class="navbar-brand" style="padding-top:10px;">Choose a Photo</a>
+				<a href="#">
+					<button class="navbar-default btn btn-mini navbar-left btn-info" style="margin: 4px 0 4px 4px;padding: 14px 20px;border-style:none;position:fixed;left:0px">Cancel</button>
+				</a>
+        		<a class="navbar-brand" style="float: center; display: inline-block;">Choose a Photo</a>
 			</div>
 		</div>
 	</div>
-	<div class="page-header">
+
+	<div style="position: relative; top: 60px; padding: 5px">
+		<p>Choose a photo to make into a notecard</p>
+		<div>
+			<button type="button" class="btn btn-primary" ng-click="capturePhoto()">Take New Photo</button>
+		<div>
+		<h4>Choose Existing</h4>
+		<div style="margin-top: 10px; padding: 10px 10px 0 10px; border: solid #A3A3A3 1px;">
+			<span ng-repeat="photo in photos">
+				<a href="#/create/{{photo}}">
+					<img ng-src="{{photo}}" style="width:22%;margin: 0 0 10px 0;" alt=""></img>                
+				</a>
+			</span>
+		</div>
 	</div>
 
-
-	<!--<button type="button"  class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-	<p>Choose a photo to use as the base of your new note.</p>
-	<button type="button" class="navbar-default btn btn-primary" ng-click="capturePhoto()">Take New Photo</button>
-	<br>
-	<br>
-	<span ng-repeat="photo in photos">
-		<a href="#/create/{{photo}}">
-			<img ng-src="{{photo}}" style="width:20%;height:20%;margin:1%" alt=""></img>                
-		</a>
-	</span>
-
-		<!-- Modal dialog for create note tutorial -->
-		<div class="modal fade" id="createNoteModal">
-		  <div class="modal-dialog">
+	<!-- Modal dialog for create note tutorial -->
+	<div class="modal fade" id="createNoteModal">
+		<div class="modal-dialog">
 			<div class="modal-content">
-			  <div class="modal-header">
-				<button type="button" class="close" ng-click="tutorialClose()" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="createNoteModalLabel">New Note Tutorial</h4>
-			  </div>
-			  <div class="modal-body">
-				<h4 class="createNoteBodyLabel">Tap 'Take New' to use the device's camera to take a new image.</h4>
-				<img  id="createNoteTutorialImg" 
-					style="border: 1px solid gray;width:90%;margin-left:5%;height:80%" 
-					ng-src="img/create-tutorial-take-new.png" 
-					alt="">
-				</img>
-			  </div>
-			  <div class="modal-footer">
-				<button type="button" id="createNoteTutorialBtn" class="btn btn-primary pull-left" ng-click="nextCreateNoteTutorial()">Next</button>
-				<input type="checkbox" id="createNoteTutorialCheck"> Do not display again</button>
-			  </div>
-			</div><!-- /.modal-content -->
-		  </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->	
+				<div class="modal-header">
+					<button type="button" class="close" ng-click="tutorialClose()" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="createNoteModalLabel">New Note Tutorial</h4>
+				</div>
+				<div class="modal-body">
+					<h4 class="createNoteBodyLabel">Tap 'Take New' to use the device's camera to take a new image.</h4>
+					<img  id="createNoteTutorialImg" 
+						style="border: 1px solid gray;width:90%;margin-left:5%;height:80%" 
+						ng-src="img/create-tutorial-take-new.png" 
+						alt="">
+					</img>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="createNoteTutorialBtn" class="btn btn-primary pull-left" ng-click="nextCreateNoteTutorial()">Next</button>
+					<input type="checkbox" id="createNoteTutorialCheck"> Do not display again</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->	
 
