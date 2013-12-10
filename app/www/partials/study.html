@@ -6,8 +6,9 @@
 				<a class="navbar-brand" style="float:center;padding-top:10px;">Study: {{deck.name}}</a>
 				<a class="dropdown" data-toggle="dropdown"><button class="navbar-default btn dropdown-toggle btn-mini navbar-right btn-info" style="float:right;margin-top: 4px;margin-bottom:4px;margin-right:4px;border-style:none;">Options<span class="caret"></span></button></a>
 				<ul class="dropdown-menu pull-right">
-					<li><a ng-click="addReminder()">Add Reminder</a></li>
-					<li><a ng-click="deleteDeck()">Delete Deck</a></li>
+					<li><a style="cursor: pointer" ng-click="addReminder()">Add Reminder</a></li>
+					<li class="divider" style="margin: 1px 0;"></li>
+					<li><a style="cursor: pointer" ng-click="deleteDeck()">Delete Deck</a></li>
 				</ul>
 			</div>
 		</div>
