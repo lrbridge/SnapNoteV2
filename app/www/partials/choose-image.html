@@ -1,8 +1,8 @@
 <div ng-init="showTutorial()" >
-	<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar navbar-default navbar-fixed-top">
 		<div class="navbar-header" style="width: 100%;">
 			<div style="width: 100%;text-align: center;">
-				<a href="#"><button class="btn btn-mini navbar-left btn-info" style="float:left;margin-top: 4px;margin-left:4px;">Cancel</button></a>
+				<a href="#"><button class="navbar-default btn btn-mini navbar-left btn-info" style="float:left;margin-top:4px;margin-bottom:4px;margin-left:4px;border-style:none;">Cancel</button></a>
 				<a class="navbar-brand" style="padding-top:10px;">Choose a Photo</a>
 			</div>
 		</div>
@@ -13,7 +13,7 @@
 
 	<!--<button type="button"  class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
 	<p>Choose a photo to use as the base of your new note.</p>
-	<button type="button" class="btn btn-primary" ng-click="capturePhoto()">Take New Photo</button>
+	<button type="button" class="navbar-default btn btn-primary" ng-click="capturePhoto()">Take New Photo</button>
 	<br>
 	<br>
 	<span ng-repeat="photo in photos">
