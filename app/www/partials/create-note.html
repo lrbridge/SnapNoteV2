@@ -3,12 +3,13 @@
   <div class="navbar navbar-default navbar-fixed-top" style="float:none;">
     <div class="navbar-header" style="width: 100%;">
       <div style="width: 100%;text-align: center;">
-        <a href="#"><button class="navbar-default btn btn-mini navbar-left btn-info" style="float:left;margin-top:4px;margin-bottom:4px;margin-left:4px;border-style:none;">Cancel</button></a>
+        <a href="#"><button class="navbar-default btn btn-mini navbar-left btn-info" style="float:left;margin-top:4px;margin-bottom:4px;margin-left:4px;border-style:none;padding: 14px 16px;">Cancel</button></a>
         <a class="navbar-brand" style="float:center; display: inline-block;">New Note</a>
-        <a class="dropdown" data-toggle="dropdown"><button class="navbar-default btn dropdown-toggle btn-mini navbar-right btn-info" style="float:right;margin-top: 4px;margin-bottom:4px;margin-right:4px;border-style:none;">Options<span class="caret"></span></button></a>
-        <ul class="dropdown-menu">
-          <li><a ng-click="clickUndo()">Undo</a></li>
-          <li><a ng-click="clickRedo()">Redo</a></li>
+        <a class="dropdown" data-toggle="dropdown"><button class="navbar-default btn dropdown-toggle btn-mini navbar-right btn-info" style="padding: 14px 16px;float:right;margin-top: 4px;margin-bottom:4px;margin-right:4px;border-style:none;">Options <span class="caret"></span></button></a>
+        <ul class="dropdown-menu" style="right: 0;left: auto;">
+          <li><a style="cursor: pointer" ng-click="clickUndo()">Undo</a></li>
+          <li class="divider" style="margin: 1px 0;"></li>
+          <li><a style="cursor: pointer" ng-click="clickRedo()">Redo</a></li>
         </ul>
       </div>
     </div>
