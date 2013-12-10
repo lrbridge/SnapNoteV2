@@ -4,8 +4,8 @@ angular.module('snapnote').controller('DeckListCtrl',
 
 		// Get the deck list view's elements
 		var $view = $('div#deck-list-view'),
-			$searchBox = $view.find('input#deck-search'),
-			$searchBackBtn = $view.find('button#deck-search-back'),
+			$searchBox = $view.find('input.search'),
+			$searchBackBtn = $view.find('button#search-back-btn'),
 			$searchResults = $view.find('div#search-results'),
 			$mainContent = $view.find('div#main-content'),
 			$downloadModal = $('#download-progress-modal'),
@@ -23,9 +23,9 @@ angular.module('snapnote').controller('DeckListCtrl',
 				// set flag
 				inSearchMode = true;
 				// float deck-list and newnote button downwards
-			    $mainContent.css('top', 700);
+			    $mainContent.css('top', $(window).height());
 			    // shrink search box width to show the back button
-			    var newWidth = $searchBox.width() - $searchBackBtn.outerWidth();
+			    var newWidth = $searchBox.outerWidth() - $searchBackBtn.outerWidth();
 			    $searchBox.css('width', newWidth);
 			}
 		});
@@ -42,7 +42,7 @@ angular.module('snapnote').controller('DeckListCtrl',
 				// float deck-list and newnote button upwards
 			    $mainContent.css('top', '');
 			    // expand search box width to hide the back button
-			    $searchBox.css('width','');
+			    $searchBox.css('width','100%');
 			}	
 		});
 
