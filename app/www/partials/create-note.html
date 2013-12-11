@@ -1,12 +1,14 @@
 <div class="newNotecard">
 
-  <div class="navbar navbar-default navbar-fixed-top" style="float:none;">
-    <div class="navbar-header" style="width: 100%;">
-      <div style="width: 100%;text-align: center;">
-        <a href="#/chooseImage"><button class="navbar-default btn btn-mini navbar-left btn-info" style="float:left;margin-top:4px;margin-bottom:4px;margin-left:4px;border-style:none;padding: 14px 16px;">Back</button></a>
-        <a class="navbar-brand" style="float:center; display: inline-block;">New Note</a>
-        <a class="dropdown" data-toggle="dropdown"><button class="navbar-default btn dropdown-toggle btn-mini navbar-right btn-info" style="padding: 14px 16px;float:right;margin-top: 4px;margin-bottom:4px;margin-right:4px;border-style:none;">Options <span class="caret"></span></button></a>
-        <ul class="dropdown-menu" style="right: 0;left: auto;">
+  <div class="page-header">
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="navbar-header">
+        <a href="#/chooseImage"><button class="btn btn-info btn-nav-left">Back</button></a>
+        <a class="navbar-brand centered">New Note</a>
+        <a class="dropdown" data-toggle="dropdown">
+          <button class="btn dropdown-toggle btn-nav-right">Options <span class="caret"></span></button>
+        </a>
+        <ul class="dropdown-menu pull-right">
           <li><a style="cursor: pointer" ng-click="clickUndo()">Undo</a></li>
           <li class="divider" style="margin: 1px 0;"></li>
           <li><a style="cursor: pointer" ng-click="clickRedo()">Redo</a></li>
@@ -15,7 +17,7 @@
     </div>
   </div>
 
-  <div class="container" style="border: 1px solid gray;height:{{height}}; width:{{width}}; margin: 70px auto 0 auto; padding: 0">
+  <div class="container" style="border: 1px solid gray;height:{{height}}; width:{{width}}; margin: 0 auto; padding: 0">
     <div id="blurHTML" style="height:{{height}}; width:{{width}}; margin-left: auto; margin-right: auto;">
       <div id="slide" style="height:{{height}}; width:{{width}}; margin-left: auto; margin-right: auto;">
         <img ng-src="{{photo}}" style="position:absolute; height:{{height}}; width:{{width}};" />
