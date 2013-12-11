@@ -1,62 +1,77 @@
-<div class="study">
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>-->
-			<a href="#"><button class="btn btn-mini pull-left">Home</button></a>
-			<h3>Study: {{ deck.name }}</h3>
-        </div>
-      </div>
-    </div>
+<div class="study" ng-init="showTutorial()">
 	<div class="page-header">
-
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="navbar-header">
+				<a href="#"><button class="btn btn-info btn-nav-left">Home</button></a>
+				<a class="navbar-brand centered">{{deck.name}}</a>
+				<a class="dropdown" data-toggle="dropdown">
+					<button class="btn dropdown-toggle btn-nav-right">Options <span class="caret"></span></button>
+				</a>
+				<ul class="dropdown-menu pull-right">
+					<li><a style="cursor: pointer" href="#/{{deck.id}}/reminder">Add Reminder</a></li>
+					<li class="divider" style="margin: 1px 0;"></li>
+					<li><a style="cursor: pointer" ng-click="deleteDeck()">Delete Deck</a></li>
+				</ul>
+			</div>
+		</div>
 	</div>
+
     <div class="container" >
+		<!-- src here will become the card's front -->
+		<img  id="note" 
+	        style="border: 1px solid gray;max-width: 340px;max-height:440px;display:block;margin:0 auto;" 
+	        ng-src="{{card}}" 
+			ng-click="flipCard($event)"
+	        alt="">
+		</img>
 
-	<!-- src here will become the card's front -->
-	<img  id="note" 
-        style="border: 1px solid gray;width:90%;margin-left:5%;height:80%" 
-        ng-src="{{card}}" 
-		ng-click="flipCard($event)"
-        ng-mousedown="start($event)" 
-        ng-mouseup="end($event)" 
-        alt="">
-	</img>
-	
-	<div>Tap on the right side of the screen to flip the note.</div>
+	    <!-- Modal dialog for deck options -->
+	    <div class="modal fade" id="optionsModal">
+	      <div class="modal-dialog">
+	        <div class="modal-content">
+	          <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	            <h4 class="modal-title" id="myModalLabel">{{ deck.name }} Options</h4>
+	          </div>
+	          <div class="modal-body">
+	            <button type="button" class="btn btn-primary" ng-click="addReminder()">Add Reminder</button>
+	            <button type="button" class="btn btn-primary" ng-click="deleteDeck()">Delete Deck</button>
+	          </div>
+	        </div><!-- /.modal-content -->
+	      </div><!-- /.modal-dialog -->
+	    </div><!-- /.modal -->	
 
-    <!-- Modal -->
-    <div class="modal fade" id="optionsModal">
+		<div class="navbar navbar-fixed-bottom study-options">
+		  	<div class="btn-group btn-group-justified">
+				<a class="btn btn-default btn-primary" ng-click="previousCard()">Previous Note</a>
+				<a id="nextNote" class="btn btn-default btn-primary" ng-click="nextCard()">Next Note</a>
+			</div>
+		</div>	
+	</div><!-- /.container -->	
+
+    <!-- Modal dialog for study tutorial -->
+    <div class="modal fade" id="studyModal">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">{{ deck.name }} Options</h4>
+            <button type="button" class="close" ng-click="tutorialClose()" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="studyModalLabel">Study Tutorial</h4>
           </div>
-          <div class="modal-body">
-            <button type="button" class="btn btn-primary"><a href='#/reminder'>Add Reminder</a></button>
-            <button type="button" class="btn btn-primary" ng-click="deleteDeck()">Delete Deck</button>
+		  <div class="modal-body">
+			<h4 class="studyBodyLabel">Tap anywhere on the image to reveal the blurred section(s).</h4>
+			<img  id="studyTutorialImg" 
+				style="border: 1px solid gray;width:90%;margin-left:5%;height:80%" 
+				ng-src="img/study-tutorial-tap.png" 
+				alt="">
+			</img>
+		  </div>
+          <div class="modal-footer">
+            <button type="button" id="nextStudyTutorialBtn" class="btn btn-primary pull-left" ng-click="nextStudyTutorial()">Next</button>
+            <input type="checkbox" id="studyTutorialCheck"> Do not display again</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-	
-	
-	<div class="study-options">
-	  	<div class="btn-group btn-group-justified">
-			<a class="btn btn-default btn-block" ng-click="previousCard()">Previous Card</a>
-			<a class="btn btn-default btn-block" data-toggle="modal" data-backdrop="false" data-target="#optionsModal">Options</a>
-			<a id="nextNote" class="btn btn-default btn-block" ng-click="nextCard()">Next Card</a>
-		</div>
-	</div>
-	
-	</div>
-	
+    </div><!-- /.modal -->	
 
 </div>
 

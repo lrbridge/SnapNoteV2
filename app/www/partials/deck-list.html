@@ -1,94 +1,103 @@
-<div id="deck-list-view">
+<div id="deck-list-view" ng-init="showTutorial()">
 
-	<!-- Searchbox -->
-    <input id="deck-search" type="search" placeholder="Search online for decks" ng-model="searchText"></input>
+    <!-- Navbar with searchbox and back button -->
+    <div class="navbar navbar-default navbar-fixed-top">
+        <!-- App Title -->
+        <a class="navbar-brand">SnapNote</a>
 
-    <!-- Search back button. Hidden behind searchbox when not in search mode. -->
-    <button id="deck-search-back" class="btn btn-primary">back</button>
+        <!-- Search Box -->
+        <span class="search-container">
+            <input class="search" type="search" placeholder="Search online for decks" ng-model="searchText"></input>
+        </span>
 
-    <!-- Search results list -->
-	<div id="search-results" class="list-group">
-		<div ng-repeat="deck in decks | nonBlankFilter:searchText">
-			<div ng-show="!deck.owned" class="list-group-item download" ng-click="download(deck)">
-        		<span class="deck-name">{{ deck.name }}</span>
-        		<span class="icon">+</span>
-			</div>
-			<div ng-show="deck.owned" class="list-group-item owned">
-        		<span class="deck-name">{{ deck.name }}</span>
-        		<span class="icon">Owned</span>
-			</div>
-		</div>                     
+        <!-- Search Back Button -->
+        <button id="search-back-btn" class="btn btn-primary">back</button>
+    </div>
+
+    <!-- Search Results -->
+    <div id="search-results" class="list-group">
+        <div ng-repeat="deck in decks | nonBlankFilter:searchText">
+            <div ng-show="!deck.owned" class="list-group-item download" ng-click="download(deck)">
+                <span class="deck-name">{{ deck.name }}</span>
+                <span class="icon">+</span>
+            </div>
+            <div ng-show="deck.owned" class="list-group-item owned">
+                <span class="deck-name">{{ deck.name }}</span>
+                <span class="icon">Owned</span>
+            </div>
+        </div>
     </div>
 
     <!-- Content shown when not searching for decks -->
     <div id="main-content">
-		<!-- List of decks owned by user -->
-	    <div id="deck-list">
-		    <h1 id="deck-list-header">My Decks</h1>
-		    <div id="deck-list-content">
-				<div class="list-group">
-					<!-- Decks created by user -->
-					<h3 id="created">Created</h3>
-					<div ng-repeat="deck in decks  | filter: { 'owned': 'true', 'created': 'true', 'deleted' : 'false' } | orderBy:'name'">
-						<a href="#/{{ deck.id }}/study" class="list-group-item">
-							<h4 class="list-group-item-heading">{{ deck.name }}</h4>
-						</a>
-					</div>
-					<!-- Decks downloaded by user -->
-					<h3 id="downloaded">Downloaded</h3>
-					<div ng-repeat="deck in decks  | filter: { 'owned': 'true', 'created': 'false', 'deleted' : 'false' } | orderBy:'name'">
-						<a href="#/{{ deck.id }}/study" class="list-group-item">
-							<h4 class="list-group-item-heading">{{ deck.name }}</h4>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
+        <h1>My Decks</h1>
+        <!-- List of Notecard Decks Owned by User -->
+        <div id="deck-list" class="list-group">
+            <!-- Decks created by user -->
+            <h3 id="created">Created</h3>
+            <div ng-repeat="deck in decks  | filter: { 'owned': 'true', 'created': 'true', 'deleted' : 'false' } | orderBy:'name'">
+                <div>
+                    <a href="#/{{ deck.id }}/study" class="list-group-item">
+                        <h4 class="list-group-item-heading deck-list-header">{{ deck.name }}</h4>
+                		<div class='remindericon {{deck.remindersClass()}}' ng-click="goToReminders(deck.id); $event.stopPropagation();"></div>
+                    </a>
+                </div>
+            </div>
+            <!-- Decks downloaded by user -->
+            <h3 id="downloaded">Downloaded</h3>
+            <div ng-repeat="deck in decks  | filter: { 'owned': 'true', 'created': 'false', 'deleted' : 'false' } | orderBy:'name'">
+                <a href="#/{{ deck.id }}/study" class="list-group-item">
+                    <h4 class="list-group-item-heading deck-list-header">{{ deck.name }}</h4>
+                	<div class='remindericon {{deck.remindersClass()}}' ng-click="goToReminders(deck.id); $event.stopPropagation();"></div>
+                </a>
+            </div>
+        </div>
 
-		<!-- New Note Button -->
-	    <button id="new-note" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-backdrop="true" data-target="#newNoteModal">New Note</button>
-	    </div>
-	</div>
+        <!-- New Note Button -->
+        <a type="button" href="#/chooseImage" class="btn btn-lg btn-primary btn-block">New Note</a>
 
-	<!-- Modal dialog that shows download progress -->
-	<div id="download-progress-modal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">
-					<h3 id="title">Downloading Deck...</h3>
-					<h4 id="deck-name"></h4>
-					<div id="download-progress-box">
-		        		<div class="progress">
-							<div class="progress-bar progress-bar-success"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Modal dialog for notecard creation -->
-	<div id="newNoteModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">Choose A Photo</h4>
-				</div>
-				<div class="modal-body">
-					<p>Choose an photo to use as the base of your new flashcard.</p>
-					<button type="button" class="btn btn-primary" ng-click="capturePhoto()">Take New Photo</button>
-					<br>
-					<br>
-					<span ng-repeat="photo in photos">
-						<a href="#/create/{{photo}}">
-							<img ng-src="{{photo}}" style="width:20%;height:20%;margin:1%" alt=""></img>                
-						</a>
-					</span>
-				</div>
-			</div>
-		</div>
-	</div>
-
+    </div>
 </div>
 
+<!-- Modal dialog that shows download progress -->
+<div id="download-progress-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 id="title">Downloading Deck...</h3>
+                <h4 id="deck-name"></h4>
+                <div id="download-progress-box">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal dialog for deck list tutorial -->
+<div class="modal fade" id="deckListModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="tutorialClose()" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="deckListModalLabel">Snapshot Tutorial</h4>
+            </div>
+            <div class="modal-body">
+                <h4 class="deckListBodyLabel">Begin typing in the search bar to download existing decks.</h4>
+                <img id="deckListTutorialImg" style="border: 1px solid gray;width:90%;margin-left:5%;height:80%" ng-src="img/deck-list-tutorial-search.png" alt="">
+                </img>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="nextDeckListTutorialBtn" class="btn btn-primary pull-left" ng-click="nextDeckListTutorial()">Next</button>
+                <input type="checkbox" id="deckListTutorialCheck">Do not display again</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+</div>

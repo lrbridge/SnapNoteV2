@@ -1,18 +1,173 @@
-<div>
-    <ul class="dayButton">
-        <li><a id='sunday' ng-click="toggleclass('sunday')" style="width: 60px">S</a>
-        </li>
-        <li><a id='monday' ng-click="toggleclass('monday')" style="width: 60px">M</a>
-        </li>
-        <li><a id='tuesday' ng-click="toggleclass('tuesday')" style="width: 60px">T</a>
-        </li>
-        <li><a id='wednesday' ng-click="toggleclass('wednesday')" style="width: 60px">W</a>
-        </li>
-        <li><a id='thursday' ng-click="toggleclass('thursday')" style="width: 60px">T</a>
-        </li>
-        <li><a id='friday' ng-click="toggleclass('friday')" style="width: 60px">F</a>
-        </li>
-        <li><a id='saturday' ng-click="toggleclass('saturday')" style="width: 60px">S</a>
-        </li>
-    </ul>
+<div class="reminderSetup">
+
+    <div class="page-header">
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="navbar-header">
+                <a>
+                    <button ng-click="cancel()" class="btn btn-info btn-nav-left">Cancel</button>
+                </a>
+                <a class="navbar-brand centered" style="padding-left:20px">Reminders</a>
+                <a class="dropdown" style="visibility: hidden" data-toggle="dropdown">
+                    <button class="btn dropdown-toggle btn-nav-right">Options
+                        <span class="caret"></span>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="reminder input-group">
+            <span class="input-group-btn">
+                <button 
+                    id="SundayButton" ng-click="toggleDay('Sunday')"
+                    class="btn btn-default" type="button" 
+                    style="width: 80px; height: 35px">Sun</button>
+                <button 
+                    id="SundayTime"
+                    class="btn btn-default" 
+                    style="background-color:#fff; width:80px; height:35px" 
+                    ng-click="setupTime('Sunday')">-</button>
+            </span>
+        </div>
+        <div class="reminder input-group">
+            <span class="input-group-btn">
+                <button 
+                    id="MondayButton" ng-click="toggleDay('Monday')"
+                    class="btn btn-default" type="button" 
+                    style="width: 80px; height: 35px">Mon</button>
+                <button 
+                    id="MondayTime"
+                    class="btn btn-default" 
+                    style="background-color:#fff; width:80px; height:35px" 
+                    ng-click="setupTime('Monday')">-</button>
+            </span>
+        </div>
+        <div class="reminder input-group">
+            <span class="input-group-btn">
+                <button 
+                    id="TuesdayButton" ng-click="toggleDay('Tuesday')"
+                    class="btn btn-default" type="button" 
+                    style="width: 80px; height: 35px">Tue</button>
+                <button 
+                    id="TuesdayTime"
+                    class="btn btn-default" 
+                    style="background-color:#fff; width:80px; height:35px" 
+                    ng-click="setupTime('Tuesday')">-</button>
+            </span>
+        </div>
+        <div class="reminder input-group">
+            <span class="input-group-btn">
+                <button 
+                    id="WednesdayButton" ng-click="toggleDay('Wednesday')"
+                    class="btn btn-default" type="button" 
+                    style="width: 80px; height: 35px">Wed</button>
+                <button 
+                    id="WednesdayTime"
+                    class="btn btn-default" 
+                    style="background-color:#fff; width:80px; height:35px" 
+                    ng-click="setupTime('Wednesday')">-</button>
+            </span>
+        </div>
+        <div class="reminder input-group">
+            <span class="input-group-btn">
+                <button 
+                    id="ThursdayButton" ng-click="toggleDay('Thursday')"
+                    class="btn btn-default" type="button" 
+                    style="width: 80px; height: 35px">Thu</button>
+                <button 
+                    id="ThursdayTime"
+                    class="btn btn-default" 
+                    style="background-color:#fff; width:80px; height:35px" 
+                    ng-click="setupTime('Thursday')">-</button>
+            </span>
+        </div>
+        <div class="reminder input-group">
+            <span class="input-group-btn">
+                <button 
+                    id="FridayButton" ng-click="toggleDay('Friday')"
+                    class="btn btn-default" type="button" 
+                    style="width: 80px; height: 35px">Fri</button>
+                <button 
+                    id="FridayTime"
+                    class="btn btn-default" 
+                    style="background-color:#fff; width:80px; height:35px" 
+                    ng-click="setupTime('Friday')">-</button>
+            </span>
+        </div>
+        <div class="reminder input-group">
+            <span class="input-group-btn">
+                <button 
+                    id="SaturdayButton" ng-click="toggleDay('Saturday')"
+                    class="btn btn-default" type="button" 
+                    style="width: 80px; height: 35px">Sat</button>
+                <button 
+                    id="SaturdayTime"
+                    class="btn btn-default" 
+                    style="background-color:#fff; width:80px; height:35px" 
+                    ng-click="setupTime('Saturday')">-</button>
+            </span>
+        </div>
+
+        <div id="timepicker-modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h1 id="timepickertitle" style="text-align: center; margin-bottom: 50px">Day</h1>
+                        <table>
+                            <tr>
+                                <td ng-click="decrementHour()">
+                                    <div class="pickerup"/>
+                                </td>
+                                <td/>
+                                <td ng-click="decrementMinute()">
+                                    <div class="pickerup" />
+                                </td>
+                                <td ng-click="toggleMeridian()">
+                                    <div class="pickerup" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="hourtext" class="hourpicker pickeritem">12</td>
+                                <td class="pickercolon pickeritem">:</td>
+                                <td id="minutetext" class="minutepicker pickeritem">00</td>
+                                <td id="meridiantext" class="meridianpicker pickeritem">PM</td>
+                            </tr>
+                            <tr>
+                                <td ng-click="incrementHour()">
+                                    <div class="pickerdown" />
+                                </td>
+                                <td/>
+                                <td ng-click="incrementMinute()">
+                                    <div class="pickerdown" />
+                                </td>
+                                <td ng-click="toggleMeridian()">
+                                    <div class="pickerdown" />
+                                </td>
+                            </tr>
+                        </table>
+                        <span>
+                        <button class="btn btn-primary" type="button" style="margin-top:50px" ng-click="closePicker()">Done</button>
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+        <div class="input-group bootstrap-timepicker">
+            <input id="timepicker1" type="text" class="input-small">
+            <button class="input-group-btn">
+                <i class="icon-time"></i>
+            </button>
+        </div>
+        -->
+</div>
+
+<div class="navbar navbar-fixed-bottom study-options">
+    <div class="btn-group btn-group-justified">
+        <a class="btn btn-default btn-primary" ng-click="setReminders()">Save</a>
+    </div>
+</div>
 </div>

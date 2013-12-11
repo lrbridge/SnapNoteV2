@@ -5662,3 +5662,28 @@ th.hidden-lg, td.hidden-lg {
 body {
 	background-color: #eef
 }
+
+.dayButton {
+    padding-left:0;
+    margin:20px 10px;
+    text-align:center;
+    list-style:none
+}
+.dayButton li {
+    display:block;
+    margin: 20px 20px 20px 20px
+}
+.dayButton li>a, .dayButton li>span {
+    display:inline-block;
+    padding:5px 14px;
+    background-color:#fff;
+    border:1px solid #ddd;
+    border-radius:15px
+}
+.dayButton .active {
+    background-color:#3399f3;
+    color:#fff;
+}
+.dayButton li>a:hover, .dayButton li>a:focus {
+    text-decoration:none;
+}
