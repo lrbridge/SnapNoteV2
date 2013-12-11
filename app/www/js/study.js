@@ -2,7 +2,7 @@ angular.module('snapnote').controller('StudyCtrl',
     function ($scope, $routeParams, SampleDecks) {
         $scope.flipCount = 0;
 		$scope.tutorialCount = 0;
-			
+		
 		$scope.deck = SampleDecks.getDeck({id: $routeParams.id});
 		
 		$scope.cardId = SampleDecks.getCardId($scope.deck.id);
