@@ -7,8 +7,8 @@ angular.module('snapnote')
 
         $scope.cardId = SampleDecks.getCardId($scope.deck.id);
         $scope.card = SampleDecks.getFront($scope.cardId);
-        $scope.height = "300px";
-        $scope.width = "300px";
+        $scope.height = "440px";
+        $scope.width = "340px";
 
         $scope.photo = $routeParams.photo;
         
