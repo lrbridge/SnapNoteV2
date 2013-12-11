@@ -43,8 +43,8 @@ angular.module('snapnote')
 
         	ctx.clearRect(0, 0, blur.width, blur.height);
 			ctx.shadowColor = "black"
-            ctx.shadowBlur = 40;
-            ctx.fillStyle = "rgba(0,0,0,.1)";
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = "rgba(100,100,100,1)";
         	redoables.push(undoables.pop());
         	for (var s = 0; s < undoables.length; s++) {
         		var stroke = undoables[s]
@@ -63,8 +63,8 @@ angular.module('snapnote')
         		return;
 
         	ctx.shadowColor = "black"
-            ctx.shadowBlur = 40;
-            ctx.fillStyle = "rgba(0,0,0,.1)";
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = "rgba(100,100,100,1)";
         	stroke = redoables.pop();
         	for (var i = 0; i < stroke.length; i++) {
         		var fillX = stroke[i].x;
@@ -107,8 +107,8 @@ angular.module('snapnote')
             log("touchstart.");
             var touches = evt.changedTouches;
             ctx.shadowColor = "black"
-            ctx.shadowBlur = 40;
-            ctx.fillStyle = "rgba(0,0,0,.1)";
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = "rgba(100,100,100,1)";
             undoables.push(new Array)
             for (var i = 0; i < touches.length; i++) {
                 ongoingTouches.push(copyTouch(touches[i]));
@@ -188,9 +188,9 @@ angular.module('snapnote')
         var blurStart = function(e) {
             e.preventDefault();
             blurring = true;
-            ctx.shadowColor = "black"
-            ctx.shadowBlur = 40;
-            ctx.fillStyle = "rgba(0,0,0,.1)";
+            ctx.shadowColor = "gray"
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = "rgba(100,100,100,1)";
             lastX = e.offsetX;
             lastY = e.offsetY;
             undoables.push(new Array);
