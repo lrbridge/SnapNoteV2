@@ -1,33 +1,41 @@
 angular.module('snapnote')
     .controller('CreateNoteCtrl', function($scope, $rootScope, $routeParams, SampleDecks) {
+        $scope.decks = SampleDecks.getMyDecks();
+        $scope.deck = SampleDecks.getDeck({
+            id: sn.lastAddedToDeckId
+        });
+
+        $scope.cardId = SampleDecks.getCardId($scope.deck.id);
+        $scope.card = SampleDecks.getFront($scope.cardId);
+        $scope.height = "440px";
+        $scope.width = "340px";
 
         $scope.photo = $routeParams.photo;
         
-        $scope.decks = SampleDecks.getMyDecks();
-
-        //$scope.selectedDeck = $scope.decks[0].id;
-        
+        // chooseDeckModal options
         $scope.options = [
-            {"value": 1, "label": "Select Existing Deck"},
-            {"value": 0, "label": "Create New Deck"}
+            {"value": "true", "label": "Select Existing Deck"},
+            {"value": "false", "label": "Create New Deck"}
         ];
-        $scope.existing = 1;
+        $scope.existing = "true";
         
-        $scope.save = function(deckId) {
-            console.log($scope.deck);
-            SampleDecks.add(deckId, $scope.photo);
+        // not valid if new deck & input field empty
+        $scope.isNotValid = function(inputFull) {
+            return ($scope.existing == "false") && !inputFull; 
         }
-
-        $scope.create = function(newDeckName) {
+        
+        $scope.createCard = function() {
             
-            SampleDecks.create(newDeckName);
-
-            // Refresh decks (I think there should be a less hacky way to do this)
-            $scope.decks = SampleDecks.getMyDecks();
-
-            // Set selected deck to new deck
-            //$scope.selectedDeck = $scope.decks[$scope.decks.length - 1].id;
-        }
+            var deckId = $scope.deck.id;
+            
+            if($scope.existing == "false") {
+                deckId = SampleDecks.addDeck($scope.newDeckName);  
+            }
+            
+            var back = $scope.photo;
+            var front = back.replace(".png","-blurred.png");
+            SampleDecks.addCard(deckId, front, back);   
+        };
 
         $scope.clickUndo = function() {
         	if (undoables.length == 0)
@@ -35,8 +43,8 @@ angular.module('snapnote')
 
         	ctx.clearRect(0, 0, blur.width, blur.height);
 			ctx.shadowColor = "black"
-            ctx.shadowBlur = 40;
-            ctx.fillStyle = "rgba(0,0,0,.1)";
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = "rgba(100,100,100,1)";
         	redoables.push(undoables.pop());
         	for (var s = 0; s < undoables.length; s++) {
         		var stroke = undoables[s]
@@ -48,15 +56,15 @@ angular.module('snapnote')
         			ctx.fillRect(clearX, clearY, clearHeight, clearWidth);
         		}
         	}
-        }
+        };
 
         $scope.clickRedo = function() {
         	if (redoables.length == 0)
         		return;
 
         	ctx.shadowColor = "black"
-            ctx.shadowBlur = 40;
-            ctx.fillStyle = "rgba(0,0,0,.1)";
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = "rgba(100,100,100,1)";
         	stroke = redoables.pop();
         	for (var i = 0; i < stroke.length; i++) {
         		var fillX = stroke[i].x;
@@ -66,19 +74,10 @@ angular.module('snapnote')
         		ctx.fillRect(fillX, fillY, fillHeight, fillWidth);
         	}
         	undoables.push(stroke);
-        }
-
-        $scope.decks = SampleDecks.getMyDecks();
-        $scope.deck = SampleDecks.getDeck({
-            id: 1
-        });
-        $scope.cardId = SampleDecks.getCardId($scope.deck.id);
-        $scope.card = SampleDecks.getFront($scope.cardId);
-        $scope.height = "300px";
-        $scope.width = "300px";
-
-        $scope.edit = function() {};
-
+        };
+        
+        // All blurring logic below here
+        
         var blur = document.getElementById("blur"),
             ctx = blur.getContext("2d"),
             blurring = false,
@@ -108,15 +107,15 @@ angular.module('snapnote')
             log("touchstart.");
             var touches = evt.changedTouches;
             ctx.shadowColor = "black"
-            ctx.shadowBlur = 40;
-            ctx.fillStyle = "rgba(0,0,0,.1)";
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = "rgba(100,100,100,1)";
             undoables.push(new Array)
             for (var i = 0; i < touches.length; i++) {
                 ongoingTouches.push(copyTouch(touches[i]));
                 lastTouchX.push(touches[i].pageX - this.offsetParent.offsetLeft);
                 lastTouchY.push(touches[i].pageY - this.offsetParent.offsetTop);
             }
-        }
+        };
 
         var handleMove = function(evt) {
             evt.preventDefault();
@@ -139,7 +138,7 @@ angular.module('snapnote')
                     log("can't figure out which touch to continue");
                 }
             }
-        }
+        };
 
         var handleEnd = function(evt) {
             evt.preventDefault();
@@ -157,7 +156,7 @@ angular.module('snapnote')
                     log("can't figure out which touch to end");
                 }
             }
-        }
+        };
 
             function ongoingTouchIndexById(idToFind) {
                 for (var i = 0; i < ongoingTouches.length; i++) {
@@ -168,15 +167,15 @@ angular.module('snapnote')
                     }
                 }
                 return -1; // not found
-            }
+            };
 
             function log(msg) {
                 console.log(msg);
-            }
+            };
 
             function colorForTouch(touch) {
                 return "#000000";
-            }
+            };
 
             function copyTouch(touch) {
                 return {
@@ -184,14 +183,14 @@ angular.module('snapnote')
                     pageX: touch.pageX,
                     pageY: touch.pageY
                 };
-            }
+            };
 
         var blurStart = function(e) {
             e.preventDefault();
             blurring = true;
-            ctx.shadowColor = "black"
-            ctx.shadowBlur = 40;
-            ctx.fillStyle = "rgba(0,0,0,.1)";
+            ctx.shadowColor = "gray"
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = "rgba(100,100,100,1)";
             lastX = e.offsetX;
             lastY = e.offsetY;
             undoables.push(new Array);
@@ -200,7 +199,7 @@ angular.module('snapnote')
         var blurEnd = function(e) {
             e.preventDefault();
             blurring = false;
-        }
+        };
 
         var blurMove = function(e) {
             e.preventDefault();
@@ -209,7 +208,7 @@ angular.module('snapnote')
                 lastX = e.offsetX;
                 lastY = e.offsetY;
             }
-        }
+        };
 
         var drawBlur = function(mouseX, mouseY, lastX, lastY) {
             // find all points between        
@@ -271,12 +270,12 @@ angular.module('snapnote')
                     error -= 1.0;
                 }
             }
-        }
+        };
 
         blur.onmousedown = blurStart;
         blur.onmouseup = blurEnd;
         blur.onmousemove = blurMove;
         blur.ontouchstart = handleStart;
         blur.ontouchend = handleEnd;
-        blur.ontouchmove = handleMove;
+        blur.ontouchmove = handleMove;	
     });

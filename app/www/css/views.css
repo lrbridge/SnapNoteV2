@@ -7,70 +7,133 @@
 .modal {
     overflow: hidden;
 }
+.navbar-header {
+    text-align: center;
+}
+.navbar-header .btn {
+    padding: 14px 18px;
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+    border-style:none;
+}
+.navbar-header .btn.dropdown-toggle {
+    float: right;
+    padding: 14px 18px;
+}
+.navbar-header .btn:hover,
+.navbar-header .btn:active,
+.navbar-header .btn.active {
+    color: #fff;
+    background-color: #39b3d7;
+    border-color: #269abc;
+}
+.navbar-default .dropdown-menu>li>a:hover, 
+.navbar-default .dropdown-menu>.active>a, 
+.navbar-default .dropdown-menu>.active>a:hover {
+    color: #fff;
+    background-color: #39b3d7;
+    border-color: #269abc;
+}
+.navbar-header .btn-nav-left {
+    float:left;
+    margin: 4px 0 4px 4px;
+}
+.navbar-header .btn-nav-right {
+    float:right;
+    margin: 4px 4px 4px 0px;
+}
+.navbar-brand {
+    height: 60px;
+    line-height: 34px;
+}
+.navbar-brand.centered {
+    padding: 12px 0px;
+    display: inline-block;
+    float:center;
+}
+
 
 /*
  * Styles for the deck-list view
  */
  div#deck-list-view {
     z-index: 1;
-    width: 100%;          /* Nexus 4 Width: 384px; */
-    height: 100%;         /* Nexus 4 Height: 592px; */
+    width: 100%;
+    height: 100%;
     padding: 5px;
 }
-div#main-content {
-    z-index: 2;
-    position: relative;
-    transition: top 1s;
-    -webkit-transition: top 1s; /* Safari */  
+/* Navbar with searchbox and back button */
+ div#deck-list-view .navbar-brand {
+    padding-left: 10px;
+    padding-right: 10px;
 }
+span.search-container {
+    display: block; 
+    overflow: hidden; 
+    padding: 0 10px 0 0;
+}
+input.search {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 48px;
+    margin: 5px 0px;
+    font-size: 20px;
+    transition: width 0.5s;
+    -webkit-transition: width 0.5s;
+}
+button#search-back-btn {
+    position: fixed;
+    z-index: 1;
+    top: 5px;
+    right: 10px;
+    padding: 12px 14px;
+}
+/* Content shown when not searching for decks. */
+div#main-content {
+    position: relative;
+    top: 60px;
+    transition: top 1s;
+    -webkit-transition: top 1s;
+}
+div#main-content h1 {
+    color: rgb(156, 156, 156);
+    margin: 5px 0 8px 0;
+}
+/* List of Decks Owned by User */
 div#deck-list {
     width: 100%;
-    height: 482px;
-}
-#deck-list-header {
-    margin-top: 0px;
-    margin-bottom: 5px;
-}
-div#deck-list-content {
-    height: 433px;
+    height: 395px;
     overflow-y: auto;
-    background-color: white;
     border: solid #A3A3A3 1px;
+    background-color: white;
     padding: 5px;
+    margin: 0 0 5px 0;
     transition: top 1s;
     -webkit-transition: top 1s; /* Safari */  
+    
 }
-div#deck-list-content h3#created {
+div#deck-list h3#created {
     margin-top: 0px;
     margin-bottom: 5px;
 }
-div#deck-list-content h3#downloaded {
+div#deck-list h3#downloaded {
     margin-top: 15px;
     margin-bottom: 5px;
 }
-input#deck-search {
-    z-index: 2;
-    position: relative;
-    width: 100%; 
-    height: 40px;
-    margin-bottom: 5px;
-    font-size: 18px;
-    transition: width 0.5s;
-    -webkit-transition: width 0.5s; /* Safari */ 
-}
+/* New Note Button */
 button#new-note {
     position: relative;
 }
-button#deck-search-back {
-    position: absolute;
-    top: 6px;
-    right: 6px;
-}
+/* Search Results */
 #search-results {
     position: relative;
+    top: 60px;
     width: 100%;
-    height: 482px;
+    height: 515px;
     padding: 5px;
+    margin: 0px;
     overflow: hidden;
     display: none;
 }
@@ -93,3 +156,94 @@ button#deck-search-back {
     background-image: url('../img/download-icon.png');
     background-size: 30px 30px;
 }
+.dayButton {
+    padding-left:0;
+    margin:20px 10px;
+    text-align:center;
+    list-style:none
+}
+.dayButton li {
+    display:block;
+    margin: 20px 20px 20px 20px
+}
+.dayButton li>a, .dayButton li>span {
+    display:inline-block;
+    padding:5px 14px;
+    background-color:#fff;
+    border:1px solid #ddd;
+    border-radius:15px
+}
+.dayButton .active {
+    background-color:#3399f3;
+    color:#fff;
+}
+.dayButton li>a:hover, .dayButton li>a:focus {
+    text-decoration:none;
+}
+
+.reminder {
+    width: 200px;
+    padding: 15px 20px 12px 20px;
+    margin: auto;
+}
+
+.reminder .active {
+    background-color:#3399f3;
+    color:#fff;
+}
+
+.timepicker-table {
+    padding: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.pickeritem {
+    font-size: 70px;
+    width: 120px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.pickercolon {
+    font-size: 50px;
+    width: 30px;
+}
+
+.meridianpicker {
+    font-size: 40px;
+}
+
+.pickerup {
+    width: 30px;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 20px solid #000000;
+    margin: auto;
+}
+.pickerdown {
+    width: 30px;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-top: 20px solid #000000;
+    margin: auto;
+}
+.remindericon {
+    display: inline;
+    float: right;
+    vertical-align: middle;
+    padding: 0px;
+    width: 20px;
+    height: 20px;
+    background-image: url('../img/icons/reminder_open.svg');
+    background-size: 20px 20px;
+}
+.hasreminders {
+    background-image: url('../img/icons/reminder_filled.svg');
+}
+.deck-list-header {
+    display: inline;
+}
+
