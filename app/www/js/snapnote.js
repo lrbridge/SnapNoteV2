@@ -108,6 +108,11 @@ snapnote.config(function($routeProvider) {
 	{
 		templateUrl: 'partials/blur.html',
 		controller: 'BlurCtrl'
+	})
+	.when("/reminder",
+	{
+		templateUrl: 'partials/reminder.html',
+		controller: 'ReminderSetup'
 	});
     
 });
