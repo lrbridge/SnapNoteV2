@@ -1,15 +1,19 @@
 <div ng-init="showTutorial()" >
-  <div class="navbar navbar-default navbar-fixed-top" style="float:none;">
-    <div class="navbar-header" style="width: 100%;">
-      <div style="width: 100%;text-align: center;">
-        <a href="#"><button class="navbar-default btn btn-mini navbar-left btn-info" style="float:left;margin-top:4px;margin-bottom:4px;margin-left:4px;border-style:none;padding: 14px 16px;">Cancel</button></a>
-        <a class="navbar-brand" style="float:center; margin-left:0;margin-right:0;display: inline-block;">Choose a Photo</a>
-		<a class="dropdown" style="visibility:hidden;"><button class="navbar-default btn btn-mini navbar-right btn-info" style="padding: 14px 16px;float:right;margin-top: 4px;margin-bottom:4px;margin-right:4px;border-style:none;">Options <span class="caret"></span></button></a>
-	  </div>
-    </div>
-  </div>
+	<div class="page-header" style="margin-bottom: 0px;">
+    	<div class="navbar navbar-default navbar-fixed-top">
+    		<div class="navbar-header">
+        		<a href="#">
+        			<button class="btn btn-info btn-nav-left">Cancel</button>
+        		</a>
+        		<a class="navbar-brand centered">Choose a Photo</a>
+        		<a class="dropdown" style="visibility: hidden" data-toggle="dropdown">
+          			<button class="btn dropdown-toggle btn-nav-right">Options <span class="caret"></span></button>
+        		</a>
+      		</div>
+		</div>
+  	</div>
 
-	<div style="position: relative; top: 60px; padding: 5px">
+	<div style="padding: 5px">
 		<h4>Create a notecard from a new photo...</h4>
 		<div>
 			<button type="button" class="btn btn-primary" ng-click="capturePhoto()">Take New Photo</button>
