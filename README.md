@@ -1,5 +1,4 @@
 SnapNote
-==========
 
 How to Run the App
 
