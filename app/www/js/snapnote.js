@@ -1,9 +1,9 @@
 // global sn object to access outside of angular
 var sn = {
 	
-	showCreateNoteTutorial: false,
-	showDeckListTutorial: false,
-	showStudyTutorial: false,
+	showCreateNoteTutorial: true,
+	showDeckListTutorial: true,
+	showStudyTutorial: true,
     
     lastAddedToDeckId: 1,
 
